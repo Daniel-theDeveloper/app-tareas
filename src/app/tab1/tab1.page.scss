@@ -1,0 +1,169 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+}
+.title_block{
+    text-align: center;
+}
+.title{
+    font-size: 18px;
+    font-weight: bold;
+}
+.big_label_block{
+    padding-top: 15px;
+    text-align: center;
+}
+.big_label{
+    font-size: 32px;
+}
+
+.contador_content{
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    color: black;
+}
+.icon{
+    height: 50px;
+    width: 50px;
+}
+.contador_title{
+    margin: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.numero{
+    margin: 5px;
+    font-size: 16px;
+}
+.contador1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    height: 160px;
+    width: 130px;
+    border-radius: 20px;
+    background-color: rgb(42, 200, 227)
+}
+.contador2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    height: 160px;
+    width: 130px;
+    border-radius: 20px;
+    background-color: rgb(176, 212, 132)
+}
+.contador3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    height: 160px;
+    width: 130px;
+    border-radius: 20px;
+    background-color: hsl(338, 100%, 75%)
+}
+.tareas_content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.bloque_tareas_title{
+    font-size: 28px;
+}
+
+.bloque_tarea{
+    display: grid;
+    grid-template-columns: 120px auto 80px;
+    background-color: rgb(31, 31, 31);
+    border-radius: 20px;
+    margin: 20px;
+    width: 100%;
+}
+.bloque_icono{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+.icono_fondo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background-color: rgb(42, 200, 227);
+    border-radius: 100px;
+}
+.tarea_icono{
+    color: black;
+    height: 28px;
+    width: 28px;
+}
+.tarea_title{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.estado_bloque{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+.estado_title{
+    margin: 0;
+    color: #868686;
+    font-size: 14px;
+}
+.circle{
+    height: 12px;
+    width: 12px;
+    margin-left: 10px;
+    margin-right: 5px;
+    background-color: gold;
+    border-radius: 10px;
+}
+.estado{
+    margin: 0;
+    font-size: 14px;
+    color: rgb(255, 174, 0);
+}
+.tarea_sutitle{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.options{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 30px;
+}
+
+.no_tareas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.no_tareas_fondo{
+    margin-top: 80px;
+    height: 140px;
+    width: 140px;
+}
+.no_tareas_title{
+    font-size: 25px;
+    font-style: italic;
+    color: rgb(155, 155, 155);
+}
+.no_tareas_subtitle{
+    font-size: 19px;
+    color: rgb(114, 114, 114);
+}

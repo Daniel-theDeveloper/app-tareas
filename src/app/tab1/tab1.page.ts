@@ -6,7 +6,37 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  public optionButtons = [
+    {
+      text: "Marcar como terminada",
+      data: {
+        action: "finish"
+      }
+    },
+    {
+      text: "Editar",
+      data: {
+        action: "edit"
+      }
+    },
+    {
+      text: "Cerrar",
+      role: "cancel",
+      data: {
+        action: "cancel"
+      }
+    }
+  ];
 
-  constructor() {}
+  constructor() { }
+
+  actionEvent(e: any) {
+    try {
+      let ev: any = JSON.stringify(e.detail.data.action);
+      console.log("Tarea terminada con: " + ev);
+    } catch (e: any) {
+      console.log("Cerrado forzado");
+    }
+  }
 
 }

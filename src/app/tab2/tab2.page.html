@@ -1,17 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Lista de todas las tareas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!-- <ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-</ion-content>
+  <ion-content [fullscreen]="true">
+    <div class="container">
+      <div class="tag-list">
+        <div class="tag">Ejemplo1</div>
+        <div class="tag">Ejemplo2</div>
+      </div>
+      <h1 class="task-title">Tarea 1</h1>
+      <h1 class="task-subtitle">Ejemplo de una tarea ya creada</h1>
+      <div class="dateContainer">
+        <ion-icon class="icon-date" name="today"></ion-icon>
+        <h1 class="date">1 de octubre</h1>
+      </div>
+      <button ion-button block class="action_button">Terminar</button>
+    </div>
+  </ion-content>
