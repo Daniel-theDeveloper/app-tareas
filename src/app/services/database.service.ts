@@ -22,6 +22,8 @@ export class DatabaseService {
 
   private tasks: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
 
+  public developMode: boolean = false;
+
   getTasks() {
     return this.tasks;
   }
@@ -46,7 +48,9 @@ export class DatabaseService {
       console.log("Base de datos creada con exito");
       return true;
     } catch (e: any) {
-      console.error("Error en: "+e);
+      // console.error(e);
+      console.log("Iniciando aplicacion en modo Desarrollador");
+      this.developMode = true;
       return false;
     }
   }

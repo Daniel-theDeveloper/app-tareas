@@ -21,6 +21,13 @@ export class Tab1Page {
       }
     },
     {
+      text: "Borrar",
+      role: 'cancel',
+      data: {
+        action: "delete"
+      }
+    },
+    {
       text: "Cerrar",
       role: "cancel",
       data: {
@@ -30,6 +37,7 @@ export class Tab1Page {
   ];
   tasks: any;
   loadpage: boolean = true;
+  developMode: boolean = false;
 
   constructor(private database: DatabaseService) {}
 
@@ -39,17 +47,31 @@ export class Tab1Page {
       if (res) {
         console.log("Base de datos creada");
         this.tasks = this.database.getTasks();
+        this.loadTasks();
       } else {
         console.log("Base de datos no creada");
+        if (this.database.developMode) {
+          this.developMode = true;
+          this.tasks = undefined;
+        }
       }
     });
-    this.loadTasks();
     this.loadpage = false;
   }
 
   handleRefresh(event: any) {
     setTimeout(() => {
-      this.loadTasks();
+      if (this.developMode == false) {
+        this.loadTasks();
+      } else {
+        if (this.loadpage) {
+          console.log("Carga infinita desactivada");
+          this.loadpage = false;
+        } else {
+          console.log("Carga infinita activada");
+          this.loadpage = true;
+        }
+      }
       event.target.complete();
     }, 1000);
   }
@@ -59,7 +81,7 @@ export class Tab1Page {
     await this.database.loadTasks();
     this.tasks = this.database.getTasks();
     console.log("Datos actualizados:") //borrar esto
-    console.log(this.tasks()[0].description) //borrar esto
+    console.log(this.tasks()[0].hour) //borrar esto
     this.loadpage = false;
   }
 

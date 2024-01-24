@@ -17,12 +17,21 @@
     font-size: 32px;
 }
 
-.contador_content{
-    margin: 30px;
+.contador_content_top{
+    margin: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: center;
+    color: black;
+}
+
+.contador_content_bottom{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
     color: black;
 }
 .icon{
@@ -31,12 +40,12 @@
 }
 .contador_title{
     margin: 10px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
 }
 .numero{
     margin: 5px;
-    font-size: 16px;
+    font-size: 15px;
 }
 .contador1{
     display: flex;
@@ -60,11 +69,12 @@
 }
 .contador3{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     padding: 5px;
-    height: 160px;
-    width: 130px;
+    height: 90px;
+    width: 240px;
     border-radius: 20px;
     background-color: hsl(338, 100%, 75%)
 }
@@ -72,6 +82,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     padding: 20px;
 }
 .bloque_tareas_title{
@@ -80,11 +91,11 @@
 
 .bloque_tarea{
     display: grid;
-    grid-template-columns: 120px auto 80px;
+    grid-template-columns: 90px auto 50px;
     background-color: rgb(31, 31, 31);
     border-radius: 20px;
-    margin: 20px;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .bloque_icono{
@@ -108,7 +119,7 @@
     width: 28px;
 }
 .tarea_title{
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 10px;
     margin-bottom: 0;
 }
@@ -136,24 +147,38 @@
     width: 12px;
     margin-left: 10px;
     margin-right: 5px;
-    background-color: greenyellow;
+    background-color: limegreen;
     border-radius: 10px;
 }
-.estado{
+.estado1{
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     color: rgb(255, 174, 0);
 }
+.estado2{
+    margin: 0;
+    font-size: 13px;
+    color: limegreen;
+}
 .tarea_sutitle{
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 13px;
+    color: #868686;
 }
 .options{
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding-top: 30px;
+}
+
+.loading_Tasks{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px
 }
 
 .no_tareas{
