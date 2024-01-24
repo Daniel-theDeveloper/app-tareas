@@ -86,6 +86,7 @@
     margin: 20px;
     width: 100%;
 }
+
 .bloque_icono{
     display: flex;
     justify-content: center;
@@ -122,12 +123,20 @@
     color: #868686;
     font-size: 14px;
 }
-.circle{
+.circle1{
     height: 12px;
     width: 12px;
     margin-left: 10px;
     margin-right: 5px;
     background-color: gold;
+    border-radius: 10px;
+}
+.circle2{
+    height: 12px;
+    width: 12px;
+    margin-left: 10px;
+    margin-right: 5px;
+    background-color: greenyellow;
     border-radius: 10px;
 }
 .estado{

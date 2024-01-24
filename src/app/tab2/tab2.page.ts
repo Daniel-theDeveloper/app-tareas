@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Todo } from '../todo';
-import { TodoService } from '../todo.service';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-tab2',
@@ -8,14 +8,10 @@ import { TodoService } from '../todo.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
-  public todos: Array<Todo> = [];
+  tasks = this.database.getTasks();
+  newTask = '';
 
   constructor(
-    // public todoService: TodoService
+    private database: DatabaseService
   ) { }
-
-  async ngOnInit() {
-    // this.todos = await this.todoService.read();
-  }
 }

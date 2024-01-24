@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="secondary" (click)="goBack()">
+      <ion-button fill="clear">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        Salir
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Solid Buttons</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="task" (ngSubmit)="createTask()">
+    <ion-item>
+      <ion-input label="Titulo:" type="Text input" maxlength="50" formControlName="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select label="Prioridad" placeholder="Seleccione una prioridad" formControlName="priority">
+        <ion-select-option value="1">Baja</ion-select-option>
+        <ion-select-option value="2">Intermedia</ion-select-option>
+        <ion-select-option value="3">Importante</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Fecha:</ion-label>
+      <ion-input type="date" formControlName="date"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Hora:</ion-label>
+      <ion-input type="time" formControlName="time"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea label="Descripcion:" labelPlacement="floating" type="Text input" maxlength="100" [counter]="true"
+        formControlName="description"></ion-textarea>
+    </ion-item>
+
+    <ion-item class="ion-text-center">
+      <ion-button type="submit" expand="block" fill="solid" color="success">Crear Tarea</ion-button>
+    </ion-item>
+
+    <!-- <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime minuteValues="0,15,30,45" min="today" locale="es-ES" hourCycle="h12"
+          [showDefaultButtons]="true" id="datetime"></ion-datetime>
+      </ng-template>
+    </ion-modal> -->
+  </form>
+</ion-content>
