@@ -83,7 +83,24 @@ export class DatabaseService {
   }
 
   async updateTasks(title: string, priority: number, date: string, hour: string, description: string) {
-    const query = "UPDATE Tasks SET title='"+title+"', priority="+priority+", date='"+date+"', hour='"+hour+"', description='"+description+"'";
+    console.log("Comienzo del metodo") //borrar esto
+    try {
+      const query = "UPDATE Tasks SET title='"+title+"', priority="+priority+", date='"+date+"', hour='"+hour+"', description='"+description+"'";
+      const result = await this.db.query(query);
+      console.log("Resultado:");
+      console.log(result);
+  
+      this.loadTasks();
+  
+      return true;
+    } catch (e: any) {
+      console.error(e);
+      return false;
+    }
+  }
+
+  async updateStatus(id: number, status: number) {
+    const query = "UPDATE Tasks SET status="+status+" WHERE id="+id;
     const result = await this.db.query(query);
 
     this.loadTasks();
@@ -92,11 +109,17 @@ export class DatabaseService {
   }
 
   async deleteTask(id: number) {
-    const query = 'DELETE FROM Tasks WHERE id='+id;
-    const result = await this.db.query(query);
-
-    this.loadTasks();
-
-    return result;
+    try {
+      const query = 'DELETE FROM Tasks WHERE id='+id;
+      const result = await this.db.query(query);
+      this.loadTasks();
+      console.log("Resultado:") //borrar esto
+      console.log(result) //borrar esto
+  
+      return true;
+    } catch (e: any) {
+      console.error(e);
+      return false;
+    }
   }
 }

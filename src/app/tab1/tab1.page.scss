@@ -104,13 +104,31 @@
     align-items: center;
     height: auto;
 }
-.icono_fondo{
+.icono_fondo1{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60px;
     width: 60px;
     background-color: rgb(42, 200, 227);
+    border-radius: 100px;
+}
+.icono_fondo2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background-color: rgb(176, 212, 132);
+    border-radius: 100px;
+}
+.icono_fondo3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background-color: hsl(338, 100%, 75%);
     border-radius: 100px;
 }
 .tarea_icono{

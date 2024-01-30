@@ -11,33 +11,36 @@ export class Tab1Page {
     {
       text: "Marcar como terminada",
       data: {
-        action: "finish"
+        action: 1
       }
     },
     {
       text: "Editar",
       data: {
-        action: "edit"
+        action: 2
       }
     },
     {
       text: "Borrar",
-      role: 'cancel',
+      role: 'delete',
       data: {
-        action: "delete"
+        action: 3
       }
     },
     {
       text: "Cerrar",
       role: "cancel",
       data: {
-        action: "cancel"
+        action: 4
       }
     }
   ];
   tasks: any;
   loadpage: boolean = true;
   developMode: boolean = false;
+  isNone: boolean = false;
+  taskFinishToast: boolean = false;
+  taskDeleteToast: boolean = false;
 
   constructor(private database: DatabaseService) {}
 
@@ -80,9 +83,44 @@ export class Tab1Page {
     this.loadpage = true;
     await this.database.loadTasks();
     this.tasks = this.database.getTasks();
-    console.log("Datos actualizados:") //borrar esto
-    console.log(this.tasks()[0].hour) //borrar esto
+    console.log("Datos cargados") //borrar esto
+    if (this.tasks()[0] == undefined) {
+      this.isNone = true;
+    } else {
+      this.isNone = false;
+    }
+    console.log("Vacia? ", this.isNone) //borrar esto
     this.loadpage = false;
+  }
+
+  async finishTask(id: number, status: number) {
+    await this.database.updateStatus(id, status).then((res: any) => {
+      if (res) {
+        this.taskFinishToast = true;
+        console.log("Exito") //borrar esto
+      } else {
+        console.log("No exito") //borrar esto
+      }
+    });
+  }
+
+  async deleteTask(id: number) {
+    await this.database.deleteTask(id).then((res: any) => {
+      if (res) {
+        this.taskDeleteToast = true;
+        console.log("Exito") //borrar esto
+      } else {
+        console.log("No exito") //borrar esto
+      }
+    });
+  }
+
+  setOpen(isOpen: boolean) {
+    this.taskFinishToast = isOpen;
+  }
+
+  setOpen2(isOpen: boolean) {
+    this.taskDeleteToast = isOpen;
   }
 
   actionEvent(e: any, id: any) {
@@ -90,6 +128,17 @@ export class Tab1Page {
       let ev: any = JSON.stringify(e.detail.data.action);
       console.log("Tarea terminada con: " + ev);
       console.log("Para la tarea con id: " + id);
+      if (ev == 1) {
+        console.log("Seleccionado finish") //borrar esto
+        this.finishTask(id, 2);
+      } else if (ev == 2) {
+        console.log("Selecciono editar");
+      } else if (ev == 3) {
+        console.log("Selecciono eliminar");
+        this.deleteTask(id);
+      } else {
+        console.log("No se selecciono ninguna");
+      }
     } catch (e: any) {
       console.log("Cerrado forzado");
     }
