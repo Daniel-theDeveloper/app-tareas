@@ -66,11 +66,11 @@
                 <ion-icon slot="icon-only" name="ellipsis-vertical" color="dark"></ion-icon>
               </ion-button>
             </div>
-            <ion-action-sheet mode="ios" trigger="open-action-sheet-1" header="Tarea de prueba pendiente"
+            <ion-action-sheet mode="ios" trigger="open-action-sheet-1" header="Tarea de prueba pendiente" class="my-custom-class"
               subHeader="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta."
               [buttons]="optionButtons" (didDismiss)="actionEvent($event, 1)"></ion-action-sheet>
-
           </div>
+
           <div class="bloque_tarea">
             <div class="bloque_icono">
               <div class="icono_fondo2">
@@ -92,7 +92,7 @@
                 <ion-icon slot="icon-only" name="ellipsis-vertical" color="dark"></ion-icon>
               </ion-button>
             </div>
-            <ion-action-sheet mode="ios" trigger="open-action-sheet-2" header="Tarea de prueba terminada"
+            <ion-action-sheet mode="ios" trigger="open-action-sheet-2" header="Tarea de prueba terminada" class="my-custom-class"
               subHeader="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta."
               [buttons]="optionButtons" (didDismiss)="actionEvent($event, 2)"></ion-action-sheet>
 
@@ -138,7 +138,7 @@
                 </ion-button>
               </div>
               <ion-action-sheet mode="ios" trigger="open-action-sheet-{{task.id}}" header="{{task.title}}"
-                subHeader="{{task.description}}" [buttons]="optionButtons"
+                subHeader="{{task.description}}" [buttons]="optionButtons" class="my-custom-class"
                 (didDismiss)="actionEvent($event, task.id)"></ion-action-sheet>
 
             </div>

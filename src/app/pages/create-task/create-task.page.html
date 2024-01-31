@@ -12,11 +12,12 @@
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="task" (ngSubmit)="createTask()">
-    <ion-item>
-      <ion-input label="Titulo:" type="Text input" maxlength="50" formControlName="title"></ion-input>
+    <ion-item color="light">
+      <ion-label>Titulo:</ion-label>
+      <ion-input type="Text input" maxlength="50" formControlName="title"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item color="light">
       <ion-select label="Prioridad" mode="md" placeholder="Seleccione una prioridad" formControlName="priority">
         <ion-select-option value="1">Baja</ion-select-option>
         <ion-select-option value="2">Intermedia</ion-select-option>
@@ -24,24 +25,25 @@
       </ion-select>
     </ion-item>
   
-    <ion-item>
+    <ion-item color="light">
       <ion-label>Fecha:</ion-label>
       <ion-input type="date" formControlName="date"></ion-input>
+      <ion-icon name="today"></ion-icon>
     </ion-item>
   
-    <ion-item>
+    <ion-item color="light">
       <ion-label>Hora:</ion-label>
       <ion-input type="time" formControlName="time"></ion-input>
+      <ion-icon name="time"></ion-icon>
     </ion-item>
 
-    <ion-item>
-      <ion-textarea label="Descripcion:" labelPlacement="floating" type="Text input" maxlength="100" [counter]="true"
-        formControlName="description"></ion-textarea>
+    <ion-item color="light">
+      <ion-textarea label="Descripcion:" labelPlacement="floating" type="Text input" maxlength="200" [counter]="true"
+        formControlName="description" style="height: 120px;"></ion-textarea>
     </ion-item>
+    <div style="height: 30px;"></div>
 
-    <ion-item class="ion-text-center">
-      <ion-button type="submit" expand="block" fill="solid" color="success">Crear Tarea</ion-button>
-    </ion-item>
+    <ion-button class="done_buttom" type="submit" expand="block" fill="solid" color="success">Crear Tarea</ion-button>
 
     <!-- <ion-modal [keepContentsMounted]="true">
       <ng-template>
