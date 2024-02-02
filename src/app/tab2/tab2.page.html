@@ -1,13 +1,91 @@
 <ion-content [fullscreen]="true">
   <div class="content">
     <h1 class="title">Tablero</h1>
-    <calendar
-      [eventSource] = "eventSource"
-      [calendarMode] = "calendar.mode"
-      [currentDate] = "calendar.currentDate"
-    ></calendar>
+    <ion-datetime locale="es-ES" mode="ios" presentation="date" size="cover" [(ngModel)]="datetime"></ion-datetime>
   </div>
   <div class="taskContent">
-    Test
+    <div class="taskList">
+
+      <div *ngIf="developmmentMode == true">
+        <div class="task">
+          <h1 class="hour">12:30 p.m - Terminada</h1>
+          <div class="blockDetails">
+            <div class="taskLeft">
+              <div class="timeline"></div>
+            </div>
+            <div class="taskRight">
+              <div class="taskBlock1">
+                <div class="leftBlock">
+                  <div class="iconBackground">
+                    <div class="icon1">
+                      <ion-icon name="today"></ion-icon>
+                    </div>
+                  </div>
+                </div>
+                <div class="rightBlock">
+                  <h1 class="title">Tarea de prueba de baja prioridad</h1>
+                  <div class="descriptionBlock">
+                    <h1 class="description1">{{descriptionTest}}</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <h1 class="hour">12:55 p.m - Pendiente</h1>
+          <div class="blockDetails">
+            <div class="taskLeft">
+              <div class="timeline"></div>
+            </div>
+            <div class="taskRight">
+              <div class="taskBlock2">
+                <div class="leftBlock">
+                  <div class="iconBackground">
+                    <div class="icon2">
+                      <ion-icon name="today"></ion-icon>
+                    </div>
+                  </div>
+                </div>
+                <div class="rightBlock">
+                  <h1 class="title">Tarea de prueba de prioridad intermedia</h1>
+                  <div class="descriptionBlock">
+                    <h1 class="description2">{{descriptionTest}}</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task">
+          <h1 class="hour">03:35 p.m - Pendiente</h1>
+          <div class="blockDetails">
+            <div class="taskLeft">
+              <div class="timeline"></div>
+            </div>
+            <div class="taskRight">
+              <div class="taskBlock3">
+                <div class="leftBlock">
+                  <div class="iconBackground">
+                    <div class="icon3">
+                      <ion-icon name="today"></ion-icon>
+                    </div>
+                  </div>
+                </div>
+                <div class="rightBlock">
+                  <h1 class="title">Tarea de prueba de prioridad alta</h1>
+                  <div class="descriptionBlock">
+                    <h1 class="description3">{{descriptionTest}}</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </ion-content>
