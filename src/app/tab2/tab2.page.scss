@@ -18,10 +18,152 @@ ion-datetime::part(calendar-day today) {
     padding: 15px;
 }
 
-.taskContent{
-    margin-top: 20px;
+.taskContent {
+    margin-top: 10px;
     padding: 15px;
     background: var(--ion-color-light);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    display: flex;
+}
+
+.task {
+    margin-bottom: 0px;
+}
+
+.hour {
+    margin: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 3px 4px 3px black;
+}
+
+.blockDetails {
+    display: grid;
+    grid-template-columns: 14px auto;
+}
+
+.taskLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.timeline {
+    background-color: rgb(99, 107, 121);
+    margin: 0px;
     height: 100%;
     border-radius: 50px;
+    width: 4px;
+    border-radius: 8px;
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
+}
+
+.taskRight {
+    display: flex;
+    flex-direction: column;
+}
+
+.taskBlock1 {
+    display: grid;
+    grid-template-columns: 70px auto;
+    margin: 10px;
+    background-color: rgb(42, 200, 227);
+    border-radius: 15px;
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
+}
+
+.taskBlock2 {
+    display: grid;
+    grid-template-columns: 70px auto;
+    margin: 10px;
+    background-color: rgb(176, 212, 132);
+    border-radius: 15px;
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
+}
+.taskBlock3 {
+    display: grid;
+    grid-template-columns: 70px auto;
+    margin: 10px;
+    background-color: hsl(338, 100%, 75%);
+    border-radius: 15px;
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
+}
+
+.leftBlock {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.iconBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    padding: 0px;
+    height: 60px;
+    width: 60px;
+    border-radius: 100px;
+}
+
+ion-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.icon1 {
+    color: rgb(42, 200, 227);
+}
+
+.icon2 {
+    color: rgb(176, 212, 132);
+}
+
+.icon3 {
+    color: hsl(338, 100%, 75%);
+}
+
+.rightBlock {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-start;
+    margin: 10px;
+    padding: 0px;
+    color: var(--ion-color-light);
+}
+
+.title {
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.descriptionBlock {
+    margin: 0px;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.description1 {
+    font-size: 14px;
+    color: rgb(42, 200, 227);
+}
+
+.description2 {
+    font-size: 14px;
+    color: rgb(176, 212, 132);
+}
+
+.description3 {
+    font-size: 14px;
+    color: hsl(338, 100%, 75%);
 }
