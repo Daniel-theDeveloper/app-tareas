@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
+import { CalendarComponent, CalendarMode } from 'ionic2-calendar'
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,25 @@ import { DatabaseService } from '../services/database.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  public datetime: any;
+  eventSource = [];
+  viewTitle: string = "";
+
+  calendar = {
+    mode: "month" as CalendarMode,
+    currentDate: new Date()
+  }
+
+  selectedDate!: Date;
+  @ViewChild(CalendarComponent) myCal!: CalendarComponent;
+
+  developmmentMode: boolean = true //Cambiar luego a false
+  descriptionTest: string = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta.";
+
+  constructor(
+    private database: DatabaseService
+  ) { }
+
   /* ¿COMO SERA EL PROCESO PARA CAMBIAR LAS TAREAS POR FECHA
     SELECCIONADA?
     
@@ -18,29 +38,9 @@ export class Tab2Page {
     4- Se actualizara el tablero con los nuevos datos
     */
 
+  ngOnInit() {}
 
-  public datetime: any;
-  developmmentMode: boolean = true //Cambiar luego a false
-  descriptionTest: string = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta.";
-
-  constructor(
-    private database: DatabaseService
-  ) { }
-
-  ngOnInit() {
-    const date = new Date();
-    let dayChange = 0;
-
-    // If the day we are going to set the value to
-    // is in the previous month then set the day 2 days
-    // later instead so it remains in the same month
-    if (date.getDate() + dayChange <= 0) {
-      dayChange = -dayChange;
-    }
-
-    // Set the value of the datetime to the day
-    // calculated above
-    date.setDate(date.getDate() + dayChange);
-    this.datetime = date.toISOString();
+  changeDay(day: any) {
+    console.log("Cambiando fecha a: ", day) //borrar esto
   }
 }
