@@ -20,27 +20,46 @@ export class Tab2Page {
 
 
   public datetime: any;
-  developmmentMode: boolean = true //Cambiar luego a false
+  tasks: any;
+  loadpage: boolean = true;
+  isNone: boolean = false;
+  developMode = false;
+  opciones: any;
+
   descriptionTest: string = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta.";
 
   constructor(
     private database: DatabaseService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-    const date = new Date();
-    let dayChange = 0;
-
-    // If the day we are going to set the value to
-    // is in the previous month then set the day 2 days
-    // later instead so it remains in the same month
-    if (date.getDate() + dayChange <= 0) {
-      dayChange = -dayChange;
+  async ngOnInit() {
+    if (this.database.developMode == false) {
+      this.loadpage = true;
+      this.loadTasks();
+      this.loadpage = false;
+    } else {
+      this.developMode = true;
     }
+  }
 
-    // Set the value of the datetime to the day
-    // calculated above
-    date.setDate(date.getDate() + dayChange);
-    this.datetime = date.toISOString();
+  async loadTasks() {
+    this.loadpage = true;
+    await this.database.loadTasks();
+    this.tasks = this.database.getTasks();
+    console.log("Datos cargados") //borrar esto
+    if (this.tasks()[0] == undefined) {
+      this.isNone = true;
+    } else {
+      this.isNone = false;
+    }
+    console.log("Vacia? ", this.isNone) //borrar esto
+    this.loadpage = false;
+  }
+
+  async getDate(date: any) {
+    let fechaSeleccionada = date.detail.value;
+    console.log('Fecha seleccionada: ', fechaSeleccionada);
+
+    
   }
 }
