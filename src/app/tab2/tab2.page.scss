@@ -37,6 +37,38 @@ ion-datetime::part(calendar-day today) {
     margin-bottom: 0px;
 }
 
+.noTasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5a55ed;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
+}
+
+.noTaskTitle {
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    text-shadow: 7px 7px 5px black;
+}
+
+.noTaskDescription {
+    font-weight: bold;
+    font-size: 20px;
+    color: #8690a3;
+    text-shadow: 7px 7px 5px black;
+}
+
 .hour {
     margin: 0px;
     font-size: 16px;

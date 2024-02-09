@@ -30,14 +30,16 @@ export class Tab2Page {
 
   constructor(
     private database: DatabaseService
-  ) {}
+  ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.database.developMode == false) {
-      this.loadpage = true;
-      this.loadTasks();
-      this.loadpage = false;
+      this.developMode = false;
+      // this.getDate("2024-02-07");
+     this.isNone = true; //Borrar esto
+     this.getTodayTask();
     } else {
+      this.getTodayTask(); //Borrar esto
       this.developMode = true;
     }
   }
@@ -56,10 +58,46 @@ export class Tab2Page {
     this.loadpage = false;
   }
 
+  async getTodayTask() {
+    let fullDate: any = new Date().toISOString();
+    fullDate = fullDate.split('T');
+    let today = fullDate[0];
+    
+    if (this.developMode == false) {
+      this.loadpage = true;
+      await this.database.loadTaskDate(today);
+      this.tasks = this.database.getTasks();
+      console.log("Datos cargados") //borrar esto
+      if (this.tasks()[0] == undefined) {
+        this.isNone = true;
+      } else {
+        this.isNone = false;
+      }
+      console.log("Vacia? ", this.isNone) //borrar esto
+      this.loadpage = false;
+    }
+  }
+
   async getDate(date: any) {
     let fechaSeleccionada = date.detail.value;
+    let fechaSeparada = fechaSeleccionada.split('T');
+    
+    fechaSeleccionada = fechaSeparada[0];
+
     console.log('Fecha seleccionada: ', fechaSeleccionada);
 
-    
+    if (this.developMode == false) {
+      this.loadpage = true;
+      await this.database.loadTaskDate(fechaSeleccionada);
+      this.tasks = this.database.getTasks();
+      console.log("Datos cargados") //borrar esto
+      if (this.tasks()[0] == undefined) {
+        this.isNone = true;
+      } else {
+        this.isNone = false;
+      }
+      console.log("Vacia? ", this.isNone) //borrar esto
+      this.loadpage = false;
+    }
   }
 }

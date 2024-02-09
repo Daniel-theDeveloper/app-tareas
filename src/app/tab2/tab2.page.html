@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="content">
     <h1 class="title">Tablero</h1>
-    <ion-datetime locale="es-ES" mode="ios" presentation="date" size="cover" pickerFormat="DD MM YYYY" displayFormat="DD MM YYYY" value="2012-12-15T13:47:20.789" 
+    <ion-datetime locale="es-ES" mode="ios" presentation="date" size="cover" pickerFormat="YYYY-MM-DD" displayFormat="YYYY-MM-DD"
     cancelText="" doneText="BUSCAR" min="2000" max="2100" [showDefaultButtons]="true" (ionChange)="getDate($event)" [(ngModel)]="datetime"></ion-datetime>
   </div>
   <div class="taskContent">
@@ -83,6 +83,103 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="developMode == false">
+        <div *ngIf="isNone == true">
+          <div class="noTasks">
+            <div class="circle">
+              <ion-icon name="today"></ion-icon>
+            </div>
+            <h1 class="noTaskTitle">NO HAY TAREAS PARA ESTE DIA</h1>
+            <h1 class="noTaskDescription">¡Dia libre!</h1>
+          </div>
+        </div>
+        <div *ngIf="isNone == false">
+          <div *ngFor="let task of tasks()">
+
+            <div class="task" *ngIf="task.priority == 1">
+              <h1 class="hour" *ngIf="task.status == 1">{{task.hour}} - Pendiente</h1>
+              <h1 class="hour" *ngIf="task.status == 2">{{task.hour}} - Terminada</h1>
+              <div class="blockDetails">
+                <div class="taskLeft">
+                  <div class="timeline"></div>
+                </div>
+                <div class="taskRight">
+                  <div class="taskBlock1">
+                    <div class="leftBlock">
+                      <div class="iconBackground">
+                        <div class="icon1">
+                          <ion-icon name="today"></ion-icon>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rightBlock">
+                      <h1 class="title">{{task.title}}</h1>
+                      <div class="descriptionBlock">
+                        <h1 class="description1">{{task.description}}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="task" *ngIf="task.priority == 2">
+              <h1 class="hour" *ngIf="task.status == 1">{{task.hour}} - Pendiente</h1>
+              <h1 class="hour" *ngIf="task.status == 2">{{task.hour}} - Terminada</h1>
+              <div class="blockDetails">
+                <div class="taskLeft">
+                  <div class="timeline"></div>
+                </div>
+                <div class="taskRight">
+                  <div class="taskBlock2">
+                    <div class="leftBlock">
+                      <div class="iconBackground">
+                        <div class="icon2">
+                          <ion-icon name="today"></ion-icon>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rightBlock">
+                      <h1 class="title">{{task.title}}</h1>
+                      <div class="descriptionBlock">
+                        <h1 class="description1">{{task.description}}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="task" *ngIf="task.priority == 3">
+              <h1 class="hour" *ngIf="task.status == 1">{{task.hour}} - Pendiente</h1>
+              <h1 class="hour" *ngIf="task.status == 2">{{task.hour}} - Terminada</h1>
+              <div class="blockDetails">
+                <div class="taskLeft">
+                  <div class="timeline"></div>
+                </div>
+                <div class="taskRight">
+                  <div class="taskBlock3">
+                    <div class="leftBlock">
+                      <div class="iconBackground">
+                        <div class="icon3">
+                          <ion-icon name="today"></ion-icon>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rightBlock">
+                      <h1 class="title">{{task.title}}</h1>
+                      <div class="descriptionBlock">
+                        <h1 class="description1">{{task.description}}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

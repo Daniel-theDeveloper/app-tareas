@@ -21,12 +21,17 @@ export class DatabaseService {
   private db!: SQLiteDBConnection;
 
   private tasks: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
+  // private selectedTask: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
 
   public developMode: boolean = false;
 
   getTasks() {
     return this.tasks;
   }
+
+  // getSelectedTask() {
+  //   return this.selectedTask;
+  // }
 
   constructor() { }
 
@@ -60,15 +65,18 @@ export class DatabaseService {
     try{
       const tasks = await this.db.query('SELECT * FROM Tasks;');
       this.tasks.set(tasks.values || []);
-      console.log("Resultado de la carga de datos:") //borrar esto
-      console.log(this.tasks()) //borrar esto
-      if (this.tasks() != undefined) {
-        console.log("Con datos");
-      } else {
-        console.log("Sin datos");
-      }
     } catch (e: any) {
       console.error("Error en la consulta, detalles:")
+      console.error(e);
+    }
+  }
+
+  async loadTaskDate(date: any) {
+    try {
+      const tasks = await this.db.query('SELECT * FROM Tasks where date = "'+ date +'";');
+      this.tasks.set(tasks.values || []);
+      // this.selectedTask.set(tasks.values || []);
+    } catch (e: any) {
       console.error(e);
     }
   }
