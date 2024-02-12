@@ -21,7 +21,8 @@ export class DatabaseService {
   private db!: SQLiteDBConnection;
 
   private tasks: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
-  // private selectedTask: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
+  private selectedTask: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
+  private idTask: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
 
   public developMode: boolean = false;
 
@@ -29,9 +30,13 @@ export class DatabaseService {
     return this.tasks;
   }
 
-  // getSelectedTask() {
-  //   return this.selectedTask;
-  // }
+  getSelectedTask() {
+    return this.selectedTask;
+  }
+
+  getIdTask() {
+    return this.idTask;
+  }
 
   constructor() { }
 
@@ -74,8 +79,17 @@ export class DatabaseService {
   async loadTaskDate(date: any) {
     try {
       const tasks = await this.db.query('SELECT * FROM Tasks where date = "'+ date +'";');
-      this.tasks.set(tasks.values || []);
-      // this.selectedTask.set(tasks.values || []);
+      // this.tasks.set(tasks.values || []);
+      this.selectedTask.set(tasks.values || []);
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
+
+  async loadTaskId(id: any) {
+    try {
+      const tasks = await this.db.query('SELECT * FROM Tasks where id = "'+ id +'";');
+      this.idTask.set(tasks.values || []);
     } catch (e: any) {
       console.error(e);
     }
@@ -90,16 +104,13 @@ export class DatabaseService {
     return result;
   }
 
-  async updateTasks(title: string, priority: number, date: string, hour: string, description: string) {
-    console.log("Comienzo del metodo") //borrar esto
+  async updateTasks(id: number, title: string, status: number, priority: number, date: string, hour: string, description: string) {
     try {
-      const query = "UPDATE Tasks SET title='"+title+"', priority="+priority+", date='"+date+"', hour='"+hour+"', description='"+description+"'";
+      const query = "UPDATE Tasks SET title='"+title+"', status="+status+", priority="+priority+", date='"+date+"', hour='"+hour+"', description='"+description+"' WHERE id="+id;
       const result = await this.db.query(query);
       console.log("Resultado:");
       console.log(result);
-  
       this.loadTasks();
-  
       return true;
     } catch (e: any) {
       console.error(e);

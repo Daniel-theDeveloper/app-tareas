@@ -7,18 +7,6 @@ import { DatabaseService } from '../services/database.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  /* ¿COMO SERA EL PROCESO PARA CAMBIAR LAS TAREAS POR FECHA
-    SELECCIONADA?
-    
-    1- Cada vez que se precione una fecha en el calendario,
-    se ejecutara un metodo.
-    2- Ese metodo, recibira como parametro, la fecha seleccionada
-    3- El metodo ejecutara una consulta a la base de datos donde
-    seleccionara las tareas que coincidan con la fecha seleccionada
-    4- Se actualizara el tablero con los nuevos datos
-    */
-
-
   public datetime: any;
   tasks: any;
   loadpage: boolean = true;
@@ -35,27 +23,11 @@ export class Tab2Page {
   ngOnInit() {
     if (this.database.developMode == false) {
       this.developMode = false;
-      // this.getDate("2024-02-07");
      this.isNone = true; //Borrar esto
      this.getTodayTask();
     } else {
-      this.getTodayTask(); //Borrar esto
       this.developMode = true;
     }
-  }
-
-  async loadTasks() {
-    this.loadpage = true;
-    await this.database.loadTasks();
-    this.tasks = this.database.getTasks();
-    console.log("Datos cargados") //borrar esto
-    if (this.tasks()[0] == undefined) {
-      this.isNone = true;
-    } else {
-      this.isNone = false;
-    }
-    console.log("Vacia? ", this.isNone) //borrar esto
-    this.loadpage = false;
   }
 
   async getTodayTask() {
@@ -66,14 +38,12 @@ export class Tab2Page {
     if (this.developMode == false) {
       this.loadpage = true;
       await this.database.loadTaskDate(today);
-      this.tasks = this.database.getTasks();
-      console.log("Datos cargados") //borrar esto
+      this.tasks = this.database.getSelectedTask();
       if (this.tasks()[0] == undefined) {
         this.isNone = true;
       } else {
         this.isNone = false;
       }
-      console.log("Vacia? ", this.isNone) //borrar esto
       this.loadpage = false;
     }
   }
@@ -89,14 +59,12 @@ export class Tab2Page {
     if (this.developMode == false) {
       this.loadpage = true;
       await this.database.loadTaskDate(fechaSeleccionada);
-      this.tasks = this.database.getTasks();
-      console.log("Datos cargados") //borrar esto
+      this.tasks = this.database.getSelectedTask();
       if (this.tasks()[0] == undefined) {
         this.isNone = true;
       } else {
         this.isNone = false;
       }
-      console.log("Vacia? ", this.isNone) //borrar esto
       this.loadpage = false;
     }
   }

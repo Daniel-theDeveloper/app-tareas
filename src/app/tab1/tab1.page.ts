@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
+import { SelectedTaskService } from '../services/selected-task.service'
 
 @Component({
   selector: 'app-tab1',
@@ -17,7 +19,7 @@ export class Tab1Page {
     {
       text: "Editar",
       data: {
-        action: 2
+        action: 2,
       }
     },
     {
@@ -42,7 +44,11 @@ export class Tab1Page {
   taskFinishToast: boolean = false;
   taskDeleteToast: boolean = false;
 
-  constructor(private database: DatabaseService) {}
+  constructor(
+    private database: DatabaseService,
+    private selectedTask: SelectedTaskService,
+    private navCtrl: NavController
+    ) {}
 
   async ngOnInit() {
     this.loadpage = true;
@@ -93,6 +99,11 @@ export class Tab1Page {
     this.loadpage = false;
   }
 
+  editTask(id: number) {
+    this.selectedTask.setSelectedTask(id);
+    this.navCtrl.navigateForward('/edit-task');
+  }
+
   async finishTask(id: number, status: number) {
     await this.database.updateStatus(id, status).then((res: any) => {
       if (res) {
@@ -133,6 +144,7 @@ export class Tab1Page {
         this.finishTask(id, 2);
       } else if (ev == 2) {
         console.log("Selecciono editar");
+        this.editTask(id);
       } else if (ev == 3) {
         console.log("Selecciono eliminar");
         this.deleteTask(id);

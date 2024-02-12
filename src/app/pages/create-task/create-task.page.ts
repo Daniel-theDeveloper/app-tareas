@@ -34,7 +34,7 @@ export class CreateTaskPage implements OnInit {
     console.log(this.info);
 
     try{
-      await this.database.addTasks(this.info.title, 1, this.info.priority, this.info.date, this.info.hour, this.info.description).then((res: any) => {
+      await this.database.addTasks(this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description).then((res: any) => {
         console.log("Resultado: ", res) //borrar esto
       });
       const toast = await this.toastController.create({
