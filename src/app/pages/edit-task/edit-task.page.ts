@@ -82,31 +82,40 @@ export class EditTaskPage implements OnInit {
 
   async editTask() {
     this.info = this.task.value;
-    if (this.database.developMode == false) {
-      try{
-        let id = this.idTask.getSelectedTask();
-
-        await this.database.updateTasks(id, this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
-        const toast = await this.toastController.create({
-          message: 'Tarea configurada con exito',
-          duration: 1500,
-          position: 'bottom',
-        });
-        await toast.present();
-        this.location.back();
-      } catch (e: any) {
-        console.error(e);
-        const toast = await this.toastController.create({
-          message: 'Algo salio mal, por favor reportelo',
-          duration: 1500,
-          position: 'bottom',
-        });
-        await toast.present();
+    if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
+      if (this.database.developMode == false) {
+        try{
+          let id = this.idTask.getSelectedTask();
+  
+          await this.database.updateTasks(id, this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
+          const toast = await this.toastController.create({
+            message: 'Tarea configurada con exito',
+            duration: 1500,
+            position: 'bottom',
+          });
+          await toast.present();
+          this.location.back();
+        } catch (e: any) {
+          console.error(e);
+          const toast = await this.toastController.create({
+            message: 'Algo salio mal, por favor reportelo',
+            duration: 1500,
+            position: 'bottom',
+          });
+          await toast.present();
+          this.location.back();
+        }
+      } else {
+        console.log(this.info);
         this.location.back();
       }
     } else {
-      console.log(this.info);
-      this.location.back();
+      const toast = await this.toastController.create({
+        message: 'Por favor, llene todos los campos',
+        duration: 1500,
+        position: 'bottom',
+      });
+      await toast.present();
     }
   }
 
