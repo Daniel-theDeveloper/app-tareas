@@ -1,0 +1,64 @@
+
+<ion-content [fullscreen]="true">
+  <h1 class="title">Historial de todas las tareas</h1>
+
+  <div class="date-container">
+    <div class="date-details">
+
+      <!-- Separacion por fecha -->
+      <div class="task-date-block">
+        <div class="top-task">
+          <div class="circle"></div>
+          <h1 class="date">12 de enero</h1>
+        </div>
+
+        <!-- Bloque de tarea de baja prioridad -->
+        <div class="bottom-task">
+          <div class="line"></div>
+          <div class="task-details" (click)="details(1)">
+            <div class="line-priority1"></div>
+            <div class="task-title">
+              <h1 class="letters1">Tarea de prueba de baja prioridad</h1>
+              <h1 class="hour">12:00:pm</h1>
+            </div>
+            <div class="status-block2">
+              <ion-icon class="status-icon" name="time"></ion-icon>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloque de tarea de intermedia prioridad -->
+        <div class="bottom-task">
+          <div class="line"></div>
+          <div class="task-details" (click)="details(2)">
+            <div class="line-priority2"></div>
+            <div class="task-title">
+              <h1 class="letters2">Tarea de prueba de intermedia prioridad</h1>
+              <h1 class="hour">12:00:pm</h1>
+            </div>
+            <div class="status-block1">
+              <ion-icon class="status-icon" name="checkmark"></ion-icon>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloque de tarea de alta prioridad -->
+        <div class="bottom-task">
+          <div class="line"></div>
+          <div class="task-details" (click)="details(3)">
+            <div class="line-priority3"></div>
+            <div class="task-title">
+              <h1 class="letters3">Tarea de prueba de alta prioridad</h1>
+              <h1 class="hour">12:00:pm</h1>
+            </div>
+            <div class="status-block2">
+              <ion-icon class="status-icon" name="time"></ion-icon>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</ion-content>

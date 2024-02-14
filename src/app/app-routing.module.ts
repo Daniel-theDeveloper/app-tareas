@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'edit-task',
     loadChildren: () => import('./pages/edit-task/edit-task.module').then( m => m.EditTaskPageModule)
+  },
+  {
+    path: 'tap4',
+    loadChildren: () => import('./tap4/tap4.module').then( m => m.Tap4PageModule)
   }
 
 ];
