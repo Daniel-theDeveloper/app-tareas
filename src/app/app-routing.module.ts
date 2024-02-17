@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'tap4',
     loadChildren: () => import('./tap4/tap4.module').then( m => m.Tap4PageModule)
+  },
+  {
+    path: 'details-task',
+    loadChildren: () => import('./pages/details-task/details-task.module').then( m => m.DetailsTaskPageModule)
   }
 
 ];

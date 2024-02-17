@@ -1,18 +1,17 @@
-
 <ion-content [fullscreen]="true">
   <h1 class="title">Historial de todas las tareas</h1>
 
   <div class="date-container">
     <div class="date-details">
 
+      <!-- bloque de tareas en modo desarrollador -->
       <!-- Separacion por fecha -->
-      <div class="task-date-block">
+      <div *ngIf="developMode == true" class="task-date-block">
         <div class="top-task">
           <div class="circle"></div>
           <h1 class="date">12 de enero</h1>
         </div>
 
-        <!-- Bloque de tarea de baja prioridad -->
         <div class="bottom-task">
           <div class="line"></div>
           <div class="task-details" (click)="details(1)">
@@ -27,7 +26,6 @@
           </div>
         </div>
 
-        <!-- Bloque de tarea de intermedia prioridad -->
         <div class="bottom-task">
           <div class="line"></div>
           <div class="task-details" (click)="details(2)">
@@ -42,7 +40,6 @@
           </div>
         </div>
 
-        <!-- Bloque de tarea de alta prioridad -->
         <div class="bottom-task">
           <div class="line"></div>
           <div class="task-details" (click)="details(3)">
@@ -56,9 +53,58 @@
             </div>
           </div>
         </div>
-
       </div>
+      <!-- Bloque de tareas en produccion -->
+      <div *ngIf="developMode == false">
+        <!-- Pagina de carga -->
+        <div *ngIf="loadpage == true" class="loader">
+          <div class="loader-icon"></div>
+          <h1 class="loader-text">Cargando tareas</h1>
+        </div>
 
+        <!-- Pagina de datos vacios -->
+        <div *ngIf="isNone == true" class="no-task">
+          <div class="no-task-circle">
+            <ion-icon class="no-task-icon" name="clipboard"></ion-icon>
+          </div>
+
+          <h1 class="no-task-title">Aun no ha creado ninguna tarea</h1>
+          <h1 class="no-task-subtitle">Empiece creando tu primera tarea</h1>
+          <ion-button mode="ios" color="tertiary" [routerLink]="['/create-task']"><ion-icon slot="start"
+              name="add"></ion-icon>Crear tarea</ion-button>
+        </div>
+
+        <!-- bloque de tareas -->
+        <div *ngIf="isNone == false" class="task-date-block">
+          <div *ngFor="let task of tasks()">
+            
+            <div class="top-task">
+              <div class="circle"></div>
+              <h1 class="date">{{task.date}}</h1>
+            </div>
+
+            <div class="bottom-task">
+              <div class="line"></div>
+              <div class="task-details" (click)="details(task.id)">
+                <div *ngIf="task.priority == 1" class="line-priority1"></div>
+                <div *ngIf="task.priority == 2" class="line-priority2"></div>
+                <div *ngIf="task.priority == 3" class="line-priority3"></div>
+                <div class="task-title">
+                  <h1 class="letters1">{{task.title}}</h1>
+                  <h1 class="hour">{{task.hour}}</h1>
+                </div>
+                <div *ngIf="task.status == 1" class="status-block2">
+                  <ion-icon class="status-icon" name="time"></ion-icon>
+                </div>
+                <div *ngIf="task.status == 2" class="status-block1">
+                  <ion-icon class="status-icon" name="checkmark"></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>

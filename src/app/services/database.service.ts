@@ -13,6 +13,10 @@ export interface Tasks {
   description: string;
 }
 
+export interface Count {
+  count: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +27,9 @@ export class DatabaseService {
   private tasks: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
   private selectedTask: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
   private idTask: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
+  private dates: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
+
+  private countTasks: WritableSignal<Count[]> = signal<Count[]>([]);
 
   public developMode: boolean = false;
 
@@ -36,6 +43,14 @@ export class DatabaseService {
 
   getIdTask() {
     return this.idTask;
+  }
+
+  getDates() {
+    return this.dates;
+  }
+
+  getTaskCount() {
+    return this.countTasks();
   }
 
   constructor() { }
@@ -68,7 +83,7 @@ export class DatabaseService {
   //CRUD methods
   async loadTasks() {
     try{
-      const tasks = await this.db.query('SELECT * FROM Tasks;');
+      const tasks = await this.db.query('SELECT * FROM Tasks ORDER BY date DESC;');
       this.tasks.set(tasks.values || []);
     } catch (e: any) {
       console.error("Error en la consulta, detalles:")
@@ -78,7 +93,7 @@ export class DatabaseService {
 
   async loadTaskDate(date: any) {
     try {
-      const tasks = await this.db.query('SELECT * FROM Tasks where date = "'+ date +'";');
+      const tasks = await this.db.query('SELECT * FROM Tasks where date = "'+ date +'" ORDER BY hour;');
       // this.tasks.set(tasks.values || []);
       this.selectedTask.set(tasks.values || []);
     } catch (e: any) {
@@ -90,6 +105,15 @@ export class DatabaseService {
     try {
       const tasks = await this.db.query('SELECT * FROM Tasks where id = "'+ id +'";');
       this.idTask.set(tasks.values || []);
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
+
+  async loadOnlyDates() {
+    try {
+      const dates = await this.db.query("SELECT date FROM Tasks ORDER BY date;");
+      this.dates.set(dates.values || []);
     } catch (e: any) {
       console.error(e);
     }
@@ -139,6 +163,15 @@ export class DatabaseService {
     } catch (e: any) {
       console.error(e);
       return false;
+    }
+  }
+
+  async countAllTask() {
+    try {
+      const count = await this.db.query("SELECT count(*) AS count FROM Tasks");
+      this.countTasks.set(count.values || []);
+    } catch (e: any) {
+      console.error(e);
     }
   }
 }
