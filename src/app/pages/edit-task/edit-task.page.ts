@@ -93,6 +93,7 @@ export class EditTaskPage implements OnInit {
             duration: 1500,
             position: 'bottom',
           });
+          await this.database.loadTaskId(id);
           await toast.present();
           this.location.back();
         } catch (e: any) {

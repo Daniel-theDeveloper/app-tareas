@@ -89,4 +89,10 @@
     </div>
 
   </div>
+
+  <ion-toast [isOpen]="taskFinishToast" message="Tarea finalizada" [duration]="5000"
+    (didDismiss)="setOpen(false)"></ion-toast>
+
+  <ion-toast [isOpen]="taskDeleteToast" message="Tarea eliminada" [duration]="5000"
+    (didDismiss)="setOpen2(false)"></ion-toast>
 </ion-content>

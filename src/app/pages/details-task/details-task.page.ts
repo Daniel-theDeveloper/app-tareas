@@ -12,6 +12,8 @@ import { SelectedTaskService } from '../../services/selected-task.service';
 export class DetailsTaskPage implements OnInit {
   developMode: boolean = true;
   tasks: any;
+  taskFinishToast: boolean = false;
+  taskDeleteToast: boolean = false;
 
   constructor(
     private location: Location,
@@ -42,14 +44,34 @@ export class DetailsTaskPage implements OnInit {
   }
 
   async deleteTask(id: number) {
-    await this.database.deleteTask(id);
+    await this.database.deleteTask(id).then((res: any) => {
+      if (res) {
+        this.taskDeleteToast = true;
+      } else {
+        console.error("Algo salio mal");
+      }
+    });
     this.location.back();
   }
 
   async finishTask(id: number) {
-    await this.database.updateStatus(id, 2);
+    await this.database.updateStatus(id, 2).then((res: any) => {
+      if (res) {
+        this.taskFinishToast = true;
+      } else {
+        console.error("Algo salio mal");
+      }
+    });
     await this.database.loadTaskId(id);
     this.tasks = this.database.getIdTask();
+  }
+
+  setOpen(isOpen: boolean) {
+    this.taskFinishToast = isOpen;
+  }
+
+  setOpen2(isOpen: boolean) {
+    this.taskDeleteToast = isOpen;
   }
 
 }

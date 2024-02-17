@@ -62,13 +62,10 @@
               <h1 class="tarea_sutitle">Hora: 12:30</h1>
             </div>
             <div class="options">
-              <ion-button fill="clear" id="open-action-sheet-1" color="dark">
+              <ion-button fill="clear" (click)="actionEvent(1)" color="dark">
                 <ion-icon slot="icon-only" name="ellipsis-vertical" color="dark"></ion-icon>
               </ion-button>
             </div>
-            <ion-action-sheet mode="ios" trigger="open-action-sheet-1" header="Tarea de prueba pendiente" class="my-custom-class"
-              subHeader="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta."
-              [buttons]="optionButtons" (didDismiss)="actionEvent($event, 1)"></ion-action-sheet>
           </div>
 
           <div class="bloque_tarea">
@@ -88,14 +85,10 @@
               <h1 class="tarea_sutitle">Hora: 12:30</h1>
             </div>
             <div class="options">
-              <ion-button fill="clear" id="open-action-sheet-2" color="dark">
+              <ion-button fill="clear" (click)="actionEvent(2)" color="dark">
                 <ion-icon slot="icon-only" name="ellipsis-vertical" color="dark"></ion-icon>
               </ion-button>
             </div>
-            <ion-action-sheet mode="ios" trigger="open-action-sheet-2" header="Tarea de prueba terminada" class="my-custom-class"
-              subHeader="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta."
-              [buttons]="optionButtons" (didDismiss)="actionEvent($event, 2)"></ion-action-sheet>
-
           </div>
         </div>
 
@@ -133,14 +126,10 @@
                 <h1 class="tarea_sutitle">Hora: {{task.hour}}</h1>
               </div>
               <div class="options">
-                <ion-button fill="clear" id="open-action-sheet-{{task.id}}" color="dark">
+                <ion-button fill="clear" (click)="actionEvent(task.id)" color="dark">
                   <ion-icon slot="icon-only" name="ellipsis-vertical" color="dark"></ion-icon>
                 </ion-button>
               </div>
-              <ion-action-sheet mode="ios" trigger="open-action-sheet-{{task.id}}" header="{{task.title}}"
-                subHeader="{{task.description}}" [buttons]="optionButtons" class="my-custom-class"
-                (didDismiss)="actionEvent($event, task.id)"></ion-action-sheet>
-
             </div>
           </div>
         </div>
@@ -154,10 +143,4 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
-  <ion-toast [isOpen]="taskFinishToast" message="Finalizado" [duration]="5000"
-    (didDismiss)="setOpen(false)"></ion-toast>
-
-  <ion-toast [isOpen]="taskDeleteToast" message="Tarea eliminada" [duration]="5000"
-    (didDismiss)="setOpen2(false)"></ion-toast>
 </ion-content>

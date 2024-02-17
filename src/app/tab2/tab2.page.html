@@ -15,7 +15,7 @@
               <div class="timeline"></div>
             </div>
             <div class="taskRight">
-              <div class="taskBlock1">
+              <div class="taskBlock1" (click)="details(1)">
                 <div class="leftBlock">
                   <div class="iconBackground">
                     <div class="icon1">
@@ -41,7 +41,7 @@
               <div class="timeline"></div>
             </div>
             <div class="taskRight">
-              <div class="taskBlock2">
+              <div class="taskBlock2" (click)="details(2)">
                 <div class="leftBlock">
                   <div class="iconBackground">
                     <div class="icon2">
@@ -67,7 +67,7 @@
               <div class="timeline"></div>
             </div>
             <div class="taskRight">
-              <div class="taskBlock3">
+              <div class="taskBlock3" (click)="details(3)">
                 <div class="leftBlock">
                   <div class="iconBackground">
                     <div class="icon3">
@@ -107,7 +107,7 @@
                   <div class="timeline"></div>
                 </div>
                 <div class="taskRight">
-                  <div class="taskBlock1">
+                  <div class="taskBlock1" (click)="details(task.id)">
                     <div class="leftBlock">
                       <div class="iconBackground">
                         <div class="icon1">
@@ -134,7 +134,7 @@
                   <div class="timeline"></div>
                 </div>
                 <div class="taskRight">
-                  <div class="taskBlock2">
+                  <div class="taskBlock2" (click)="details(task.id)">
                     <div class="leftBlock">
                       <div class="iconBackground">
                         <div class="icon2">
@@ -161,7 +161,7 @@
                   <div class="timeline"></div>
                 </div>
                 <div class="taskRight">
-                  <div class="taskBlock3">
+                  <div class="taskBlock3" (click)="details(task.id)">
                     <div class="leftBlock">
                       <div class="iconBackground">
                         <div class="icon3">

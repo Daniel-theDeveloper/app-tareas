@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
+import { SelectedTaskService } from '../services/selected-task.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -17,7 +19,9 @@ export class Tab2Page {
   descriptionTest: string = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta.";
 
   constructor(
-    private database: DatabaseService
+    private selectedTask: SelectedTaskService,
+    private database: DatabaseService,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -67,5 +71,10 @@ export class Tab2Page {
       }
       this.loadpage = false;
     }
+  }
+
+  details(id: number) {
+    this.selectedTask.setSelectedTask(id);
+    this.navCtrl.navigateForward('/details-task');
   }
 }
