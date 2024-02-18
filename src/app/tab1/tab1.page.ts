@@ -13,6 +13,9 @@ export class Tab1Page {
   loadpage: boolean = true;
   developMode: boolean = false;
   isNone: boolean = false;
+  lowPriority: any[] = ["cargando"];
+  mediumPriority: any[] = ["cargando"];
+  highPriority: any[] = ["cargando"];
 
   constructor(
     private database: DatabaseService,
@@ -27,6 +30,7 @@ export class Tab1Page {
         console.log("Base de datos creada");
         this.tasks = this.database.getTasks();
         this.loadTasks();
+        this.countAllTask();
       } else {
         console.log("Base de datos no creada");
         if (this.database.developMode) {
@@ -67,6 +71,14 @@ export class Tab1Page {
     }
     console.log("Vacia? ", this.isNone) //borrar esto
     this.loadpage = false;
+  }
+
+  async countAllTask() {
+    await this.database.countTaskByPriority().then(() => {
+      this.lowPriority = this.database.getTaskCount1();
+      this.mediumPriority = this.database.getTaskCount2();
+      this.highPriority = this.database.getTaskCount3();
+    });
   }
 
   actionEvent(id: any) {

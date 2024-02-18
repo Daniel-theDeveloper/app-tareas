@@ -29,7 +29,9 @@ export class DatabaseService {
   private idTask: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
   private dates: WritableSignal<Tasks[]> = signal<Tasks[]>([]);
 
-  private countTasks: WritableSignal<Count[]> = signal<Count[]>([]);
+  private countTasks1: WritableSignal<Count[]> = signal<Count[]>([]);
+  private countTasks2: WritableSignal<Count[]> = signal<Count[]>([]);
+  private countTasks3: WritableSignal<Count[]> = signal<Count[]>([]);
 
   public developMode: boolean = false;
 
@@ -49,8 +51,16 @@ export class DatabaseService {
     return this.dates;
   }
 
-  getTaskCount() {
-    return this.countTasks();
+  getTaskCount1() {
+    return this.countTasks1();
+  }
+
+  getTaskCount2() {
+    return this.countTasks2();
+  }
+
+  getTaskCount3() {
+    return this.countTasks3();
   }
 
   constructor() { }
@@ -166,10 +176,31 @@ export class DatabaseService {
     }
   }
 
-  async countAllTask() {
+  async countTaskByPriority() {
+    // try {
+    //   const count = await this.db.query("SELECT count(*) AS count FROM Tasks");
+    //   this.countTasks.set(count.values || []);
+    // } catch (e: any) {
+    //   console.error(e);
+    // }
     try {
-      const count = await this.db.query("SELECT count(*) AS count FROM Tasks");
-      this.countTasks.set(count.values || []);
+      // const count = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = "+priority);
+      // if (priority == 1) {
+      //   this.countTasks1.set(count.values || []);
+      // } else if (priority == 2) {
+      //   this.countTasks2.set(count.values || []);
+      // } else if (priority == 3) {
+      //   this.countTasks3.set(count.values || []);
+      // } else {
+      //   console.error("Prioridad invalida");
+      // }
+      const lowCount = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = 1");
+      const mediumCount = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = 2");
+      const highCount = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = 3");
+
+      this.countTasks1.set(lowCount.values || []);
+      this.countTasks2.set(mediumCount.values || []);
+      this.countTasks3.set(highCount.values || []);
     } catch (e: any) {
       console.error(e);
     }

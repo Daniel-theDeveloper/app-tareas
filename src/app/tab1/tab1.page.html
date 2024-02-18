@@ -10,22 +10,46 @@
       </h1>
     </div>
 
-    <div class="contador_content_top">
-      <div class="contador1"><ion-icon class="icon" name="today"></ion-icon>
-        <h1 class="contador_title">Baja prioridad</h1>
-        <h1 class="numero">10 tareas</h1>
+    <div *ngIf="developMode == true">
+      <div class="contador_content_top">
+        <div class="contador1"><ion-icon class="icon" name="today"></ion-icon>
+          <h1 class="contador_title">Baja prioridad</h1>
+          <h1 class="numero">10 tareas</h1>
+        </div>
+        <div class="contador2"><ion-icon class="icon" name="documents"></ion-icon>
+          <h1 class="contador_title">Intermedias</h1>
+          <h1 class="numero">10 tareas</h1>
+        </div>
       </div>
-      <div class="contador2"><ion-icon class="icon" name="documents"></ion-icon>
-        <h1 class="contador_title">Intermedias</h1>
-        <h1 class="numero">10 tareas</h1>
+  
+      <div class="contador_content_bottom">
+        <div class="contador3"><ion-icon class="icon" name="warning"></ion-icon>
+          <div class="important_block">
+            <h1 class="contador_title">Importantes</h1>
+            <h1 class="numero">10 tareas</h1>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="contador_content_bottom">
-      <div class="contador3"><ion-icon class="icon" name="warning"></ion-icon>
-        <div class="important_block">
-          <h1 class="contador_title">Importantes</h1>
-          <h1 class="numero">10 tareas</h1>
+    <div *ngIf="developMode == false">
+      <div class="contador_content_top">
+        <div class="contador1"><ion-icon class="icon" name="today"></ion-icon>
+          <h1 class="contador_title">Baja prioridad</h1>
+          <h1 class="numero">{{lowPriority[0].count}} tareas</h1>
+        </div>
+        <div class="contador2"><ion-icon class="icon" name="documents"></ion-icon>
+          <h1 class="contador_title">Intermedias</h1>
+          <h1 class="numero">{{mediumPriority[0].count}} tareas</h1>
+        </div>
+      </div>
+  
+      <div class="contador_content_bottom">
+        <div class="contador3"><ion-icon class="icon" name="warning"></ion-icon>
+          <div class="important_block">
+            <h1 class="contador_title">Importantes</h1>
+            <h1 class="numero">{{highPriority[0].count}} tareas</h1>
+          </div>
         </div>
       </div>
     </div>
