@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
 import { SelectedTaskService } from '../services/selected-task.service';
 import { NavController } from '@ionic/angular';
+import { DatesService } from '../services/dates.service';
 
 @Component({
   selector: 'app-tab2',
@@ -21,7 +22,8 @@ export class Tab2Page {
   constructor(
     private selectedTask: SelectedTaskService,
     private database: DatabaseService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private dates: DatesService
   ) { }
 
   ngOnInit() {
@@ -35,9 +37,7 @@ export class Tab2Page {
   }
 
   async getTodayTask() {
-    let fullDate: any = new Date().toISOString();
-    fullDate = fullDate.split('T');
-    let today = fullDate[0];
+    let today = this.dates.getTodayDate();
     
     if (this.developMode == false) {
       this.loadpage = true;

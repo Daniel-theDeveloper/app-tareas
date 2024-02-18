@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { NavController } from '@ionic/angular';
 import { DatabaseService } from '../../services/database.service';
 import { SelectedTaskService } from '../../services/selected-task.service';
+import { DatesService } from '../../services/dates.service';
 
 @Component({
   selector: 'app-details-task',
@@ -19,7 +20,8 @@ export class DetailsTaskPage implements OnInit {
     private location: Location,
     private database: DatabaseService,
     private idTask: SelectedTaskService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private dates: DatesService
   ) { }
 
   async ngOnInit() {
@@ -34,7 +36,8 @@ export class DetailsTaskPage implements OnInit {
     }
   }
 
-  goBack() {
+  async goBack() {
+    await this.reChargeTasks();
     this.location.back();
   }
 
@@ -51,6 +54,7 @@ export class DetailsTaskPage implements OnInit {
         console.error("Algo salio mal");
       }
     });
+    await this.reChargeTasks();
     this.location.back();
   }
 
@@ -64,6 +68,13 @@ export class DetailsTaskPage implements OnInit {
     });
     await this.database.loadTaskId(id);
     this.tasks = this.database.getIdTask();
+  }
+
+  async reChargeTasks() {
+    let today = this.dates.getTodayDate();
+    await this.database.loadTaskDate(today);
+    await this.database.countTaskByPriority(today);
+    await this.database.loadTasks();
   }
 
   setOpen(isOpen: boolean) {

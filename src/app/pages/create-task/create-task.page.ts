@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ToastController } from '@ionic/angular';
 import { FormControl, FormGroup } from '@angular/forms'
 import { DatabaseService } from '../../services/database.service';
+import { DatesService } from '../../services/dates.service';
 
 @Component({
   selector: 'app-create-task',
@@ -23,7 +24,8 @@ export class CreateTaskPage implements OnInit {
   constructor(
     private location: Location,
     private toastController: ToastController,
-    private database: DatabaseService
+    private database: DatabaseService,
+    private dates: DatesService
     ) { }
 
   ngOnInit() {
@@ -31,11 +33,13 @@ export class CreateTaskPage implements OnInit {
 
   async createTask() {
     this.info = this.task.value;
-
+    let today = this.dates.getTodayDate();
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
       if (this.database.developMode == false) {
         try{
           await this.database.addTasks(this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
+          await this.database.loadTaskDate(today);
+          await this.database.countTaskByPriority(today);
           const toast = await this.toastController.create({
             message: 'Tarea creada con exito',
             duration: 1500,

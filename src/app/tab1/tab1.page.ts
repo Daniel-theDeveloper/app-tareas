@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
 import { SelectedTaskService } from '../services/selected-task.service';
+import { DatesService } from '../services/dates.service'
 
 @Component({
   selector: 'app-tab1',
@@ -9,6 +10,7 @@ import { SelectedTaskService } from '../services/selected-task.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  today: string = "";
   tasks: any;
   loadpage: boolean = true;
   developMode: boolean = false;
@@ -20,11 +22,14 @@ export class Tab1Page {
   constructor(
     private database: DatabaseService,
     private selectedTask: SelectedTaskService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private dates: DatesService
     ) {}
 
   async ngOnInit() {
     this.loadpage = true;
+    
+    this.today = this.dates.getTodayDate();
     await this.database.initializPlugin().then((res: any) => {
       if (res) {
         console.log("Base de datos creada");
@@ -46,6 +51,7 @@ export class Tab1Page {
     setTimeout(() => {
       if (this.developMode == false) {
         this.loadTasks();
+        this.countAllTask();
       } else {
         if (this.loadpage) {
           console.log("Carga infinita desactivada");
@@ -61,20 +67,22 @@ export class Tab1Page {
 
   async loadTasks() {
     this.loadpage = true;
-    await this.database.loadTasks();
-    this.tasks = this.database.getTasks();
-    console.log("Datos cargados") //borrar esto
+
+    //Cargando datos
+    await this.database.loadTaskDate(this.today);
+    this.tasks = this.database.getSelectedTask();
+
+    //Verifiicando si esta vacio
     if (this.tasks()[0] == undefined) {
       this.isNone = true;
     } else {
       this.isNone = false;
     }
-    console.log("Vacia? ", this.isNone) //borrar esto
     this.loadpage = false;
   }
 
   async countAllTask() {
-    await this.database.countTaskByPriority().then(() => {
+    await this.database.countTaskByPriority(this.today).then(() => {
       this.lowPriority = this.database.getTaskCount1();
       this.mediumPriority = this.database.getTaskCount2();
       this.highPriority = this.database.getTaskCount3();

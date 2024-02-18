@@ -25,25 +25,34 @@ export class Tap4Page implements OnInit {
   ) { }
 
   async ngOnInit() {
+    console.log("1") //borrar esto
     this.loadpage = true;
     if (this.database.developMode == false) {
-      this.developMode = false;
+      console.log("2") //borrar esto
       
       await this.database.loadOnlyDates();
       this.dates = this.database.getDates();
 
       if (this.dates()[0].date != undefined) {
+        console.log("3") //borrar esto
         console.log("Existen datos");
         this.isNone = false;
-        await this.database.loadTasks();
-        this.tasks = this.database.getTasks();
+        await this.database.loadTasks().then(() => {
+          console.log("4") //borrar esto
+          this.tasks = this.database.getTasks();
+          this.developMode = false;
+          this.loadpage = false;
+          console.log("5") //borrar esto
+        });
       } else {
         this.isNone = true;
+        this.developMode = false;
+        this.loadpage = false;
       }
     } else {
       this.developMode = true;
+      this.loadpage = false;
     }
-    this.loadpage = false;
   }
 
   details(id: number) {

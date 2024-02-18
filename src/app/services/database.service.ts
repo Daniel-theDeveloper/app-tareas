@@ -176,27 +176,11 @@ export class DatabaseService {
     }
   }
 
-  async countTaskByPriority() {
-    // try {
-    //   const count = await this.db.query("SELECT count(*) AS count FROM Tasks");
-    //   this.countTasks.set(count.values || []);
-    // } catch (e: any) {
-    //   console.error(e);
-    // }
+  async countTaskByPriority(date: string) {
     try {
-      // const count = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = "+priority);
-      // if (priority == 1) {
-      //   this.countTasks1.set(count.values || []);
-      // } else if (priority == 2) {
-      //   this.countTasks2.set(count.values || []);
-      // } else if (priority == 3) {
-      //   this.countTasks3.set(count.values || []);
-      // } else {
-      //   console.error("Prioridad invalida");
-      // }
-      const lowCount = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = 1");
-      const mediumCount = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = 2");
-      const highCount = await this.db.query("SELECT count(*) AS count FROM Tasks where priority = 3");
+      const lowCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 1 AND date = "+date);
+      const mediumCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 2 AND date = "+date);
+      const highCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 3 AND date = "+date);
 
       this.countTasks1.set(lowCount.values || []);
       this.countTasks2.set(mediumCount.values || []);
