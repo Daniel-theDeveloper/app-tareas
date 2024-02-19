@@ -32,6 +32,7 @@ export class DatabaseService {
   private countTasks1: WritableSignal<Count[]> = signal<Count[]>([]);
   private countTasks2: WritableSignal<Count[]> = signal<Count[]>([]);
   private countTasks3: WritableSignal<Count[]> = signal<Count[]>([]);
+  private dateAvailable: WritableSignal<Count[]> = signal<Count[]>([]);
 
   public developMode: boolean = false;
 
@@ -61,6 +62,10 @@ export class DatabaseService {
 
   getTaskCount3() {
     return this.countTasks3();
+  }
+
+  getAvailableDate() {
+    return this.dateAvailable();
   }
 
   constructor() { }
@@ -188,5 +193,10 @@ export class DatabaseService {
     } catch (e: any) {
       console.error(e);
     }
+  }
+
+  async isDateAvailable(date: string) {
+    const res = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE date = '"+date+"';");
+    this.dateAvailable.set(res.values || []);
   }
 }
