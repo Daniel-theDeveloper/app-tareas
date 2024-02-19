@@ -75,7 +75,7 @@
         </div>
 
         <!-- bloque de tareas -->
-        <div *ngIf="isNone == false" class="task-date-block">
+        <div *ngIf="isNone == false && loadpage == false" class="task-date-block">
           <div *ngFor="let task of tasks()">
             
             <div class="top-task">

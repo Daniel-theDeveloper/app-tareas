@@ -11,9 +11,9 @@ import { SelectedTaskService } from '../services/selected-task.service';
 export class Tap4Page implements OnInit {
   tasks: any;
   dates: any;
-  loadpage: boolean = false;
+  loadpage: boolean = true;
   developMode: boolean = false;
-  isNone: boolean = false;
+  isNone: boolean = true;
   countTasks: any;
   res: any;
   detailsBlock: boolean = false;
@@ -25,31 +25,26 @@ export class Tap4Page implements OnInit {
   ) { }
 
   async ngOnInit() {
-    console.log("1") //borrar esto
-    this.loadpage = true;
     if (this.database.developMode == false) {
-      console.log("2") //borrar esto
       
       await this.database.loadOnlyDates();
       this.dates = this.database.getDates();
 
       if (this.dates()[0].date != undefined) {
-        console.log("3") //borrar esto
         console.log("Existen datos");
         this.isNone = false;
         await this.database.loadTasks().then(() => {
-          console.log("4") //borrar esto
           this.tasks = this.database.getTasks();
           this.developMode = false;
           this.loadpage = false;
-          console.log("5") //borrar esto
+          this.isNone = false;
         });
       } else {
-        this.isNone = true;
         this.developMode = false;
         this.loadpage = false;
       }
     } else {
+      this.isNone = false;
       this.developMode = true;
       this.loadpage = false;
     }

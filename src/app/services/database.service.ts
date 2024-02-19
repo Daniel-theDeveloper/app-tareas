@@ -178,9 +178,9 @@ export class DatabaseService {
 
   async countTaskByPriority(date: string) {
     try {
-      const lowCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 1 AND date = "+date);
-      const mediumCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 2 AND date = "+date);
-      const highCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 3 AND date = "+date);
+      const lowCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 1 AND date = '"+date+"';");
+      const mediumCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 2 AND date = '"+date+"';");
+      const highCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 3 AND date = '"+date+"';");
 
       this.countTasks1.set(lowCount.values || []);
       this.countTasks2.set(mediumCount.values || []);
