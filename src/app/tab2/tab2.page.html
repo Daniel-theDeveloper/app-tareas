@@ -97,7 +97,7 @@
             <h1 class="noTaskDescription">¡Dia libre!</h1>
           </div>
         </div>
-        <div *ngIf="isNone == false">
+        <div *ngIf="isNone == false && loadpage == false">
           <div *ngFor="let task of tasks()">
 
             <div class="task" *ngIf="task.priority == 1">

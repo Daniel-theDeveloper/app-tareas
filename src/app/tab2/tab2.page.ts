@@ -20,31 +20,28 @@ export class Tab2Page {
 
   descriptionTest: string = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta.";
 
-  highlightedDates = (isoString: any) => {
-    if (this.database.developMode) {
-      const test = new Date(isoString);
-      const utcDay = test.getUTCDate();
-      if (utcDay % 5 === 0) {
-        return {
-          textColor: '#ffcb69',
-        };
-      }
-    } else {
-      const allDate = new Date(isoString).toISOString();
-      const date = allDate.split('T');
-      this.getAvailableDates(date[0]).then((res: boolean) => {
-        if (res) {
-          return {
-            textColor: '#ffcb69'
-          }
-        } else {
-          return {}
-        }
-      });
-    }
-
-    return undefined;
-  };
+  highlightedDates = [
+    {
+      date: '2024-02-05',
+      textColor: '#ffcb69',
+      backgroundColor: '#2a2511',
+    },
+    {
+      date: '2024-02-10',
+      textColor: '#ffcb69',
+      backgroundColor: '#2a2511',
+    },
+    {
+      date: '2024-02-20',
+      textColor: '#ffcb69',
+      backgroundColor: '#2a2511',
+    },
+    {
+      date: '2024-02-23',
+      textColor: '#ffcb69',
+      backgroundColor: '#2a2511',
+    },
+  ];
 
   constructor(
     private selectedTask: SelectedTaskService,
@@ -56,26 +53,37 @@ export class Tab2Page {
   ngOnInit() {
     if (this.database.developMode == false) {
       this.developMode = false;
-      this.isNone = true; //Borrar esto
+      this.getDatesWithTasks();
       this.getTodayTask();
     } else {
       this.developMode = true;
     }
   }
 
-  async getTodayTask() {
+  private async getDatesWithTasks() {
+    this.highlightedDates = [];
+    await this.database.loadOnlyDates();
+    this.resDate = this.database.getDates();
+
+    for (let dates of this.resDate()) {
+      this.highlightedDates.push({date: dates.date, textColor: '#ffcb69', backgroundColor: '#2a2511'});
+    }
+  }
+
+  private async getTodayTask() {
     let today = this.dates.getTodayDate();
 
     if (this.developMode == false) {
       this.loadpage = true;
-      await this.database.loadTaskDate(today);
-      this.tasks = this.database.getSelectedTask();
-      if (this.tasks()[0] == undefined) {
-        this.isNone = true;
-      } else {
-        this.isNone = false;
-      }
-      this.loadpage = false;
+      await this.database.loadTaskDate(today).then(() => {
+        this.tasks = this.database.getSelectedTask();
+        if (this.tasks()[0] == undefined) {
+          this.isNone = true;
+        } else {
+          this.isNone = false;
+        }
+        this.loadpage = false;
+      });
     }
   }
 
@@ -89,24 +97,15 @@ export class Tab2Page {
 
     if (this.developMode == false) {
       this.loadpage = true;
-      await this.database.loadTaskDate(fechaSeleccionada);
-      this.tasks = this.database.getSelectedTask();
-      if (this.tasks()[0] == undefined) {
-        this.isNone = true;
-      } else {
-        this.isNone = false;
-      }
-      this.loadpage = false;
-    }
-  }
-
-  async getAvailableDates(date: string) {
-    await this.database.isDateAvailable(date);
-    this.resDate = this.database.getAvailableDate();
-    if (this.resDate()[0].count >= 1) {
-      return true;
-    } else {
-      return false;
+      await this.database.loadTaskDate(fechaSeleccionada).then(() => {
+        this.tasks = this.database.getSelectedTask();
+        if (this.tasks()[0] == undefined) {
+          this.isNone = true;
+        } else {
+          this.isNone = false;
+        }
+        this.loadpage = false;
+      });
     }
   }
 
