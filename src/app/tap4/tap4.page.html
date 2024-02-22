@@ -3,6 +3,9 @@
 
   <div class="date-container">
     <div class="date-details">
+      <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
 
       <!-- bloque de tareas en modo desarrollador -->
       <!-- Separacion por fecha -->
@@ -80,7 +83,7 @@
             
             <div class="top-task">
               <div class="circle"></div>
-              <h1 class="date">{{task.date}}</h1>
+              <h1 class="date">{{task.date | date :  "dd-MM-yyyy"}}</h1>
             </div>
 
             <div class="bottom-task">

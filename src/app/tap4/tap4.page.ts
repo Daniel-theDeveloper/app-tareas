@@ -30,7 +30,7 @@ export class Tap4Page implements OnInit {
       await this.database.loadOnlyDates();
       this.dates = this.database.getDates();
 
-      if (this.dates()[0].date != undefined) {
+      if (this.dates()[0] != undefined) {
         console.log("Existen datos");
         this.isNone = false;
         await this.database.loadTasks().then(() => {
@@ -48,6 +48,34 @@ export class Tap4Page implements OnInit {
       this.developMode = true;
       this.loadpage = false;
     }
+  }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.loadpage = true;
+      if (this.developMode == false) {
+        this.loadTasks();
+      }
+      event.target.complete();
+    }, 1000);
+  }
+
+  async loadTasks() {
+    await this.database.loadTasks();
+    this.dates = this.database.getDates();
+
+    if (this.dates()[0] != undefined) {
+      console.log("Existen datos");
+      this.isNone = false;
+      await this.database.loadTasks().then(() => {
+        this.tasks = this.database.getTasks();
+        this.loadpage = false;
+        this.isNone = false;
+      });
+    } else {
+      this.loadpage = false;
+    }
+
   }
 
   details(id: number) {

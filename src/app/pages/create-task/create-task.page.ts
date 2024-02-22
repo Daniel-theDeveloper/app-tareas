@@ -38,15 +38,15 @@ export class CreateTaskPage implements OnInit {
       if (this.database.developMode == false) {
         try{
           await this.database.addTasks(this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
-          await this.database.loadTaskDate(today);
-          await this.database.countTaskByPriority(today);
           const toast = await this.toastController.create({
-            message: 'Tarea creada con exito',
+            message: 'Tarea creada con exito, por favor, recargue la pagina',
             duration: 1500,
             position: 'bottom',
           });
-          await toast.present();
-          this.location.back();
+          await this.database.loadAll(today).then(() => {
+            toast.present();
+            this.location.back();
+          });
         } catch (e: any) {
           const toast = await this.toastController.create({
             message: 'Algo salio mal, por favor reportelo',

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
 import { SelectedTaskService } from '../services/selected-task.service';
-import { DatesService } from '../services/dates.service'
+import { DatesService } from '../services/dates.service';
 
 @Component({
   selector: 'app-tab1',

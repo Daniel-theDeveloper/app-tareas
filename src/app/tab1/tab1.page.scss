@@ -55,7 +55,8 @@
     height: 160px;
     width: 130px;
     border-radius: 20px;
-    background-color: rgb(42, 200, 227)
+    background-color: rgb(42, 200, 227);
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
 .contador2{
     display: flex;
@@ -65,7 +66,8 @@
     height: 160px;
     width: 130px;
     border-radius: 20px;
-    background-color: rgb(176, 212, 132)
+    background-color: rgb(176, 212, 132);
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
 .contador3{
     display: flex;
@@ -76,7 +78,8 @@
     height: 90px;
     width: 240px;
     border-radius: 20px;
-    background-color: hsl(338, 100%, 75%)
+    background-color: hsl(338, 100%, 75%);
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
 .tareas_content{
     display: flex;
