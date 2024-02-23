@@ -1,17 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Configuracion
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item (click)="clickMe(1)" color="light"><ion-icon name="layers"></ion-icon> Gestionar permisos</ion-item>
+  <ion-item (click)="clickMe(2)" color="light"><ion-icon name="chatbox"></ion-icon> Idioma: {{selectedLanguaje}}</ion-item>
+  <ion-item (click)="clickMe(3)" color="light"><ion-icon name="trash"></ion-icon> Borrar todo</ion-item>
+  <ion-item (click)="clickMe(4)" color="light"><ion-icon name="information-circle"></ion-icon> Acerca de</ion-item>
+  <ion-item (click)="clickMe(5)" color="light"><ion-icon name="log-in"></ion-icon> Salir</ion-item>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div class="copyright-block">
+    <h1 class="copyright-top">Copyright © 2024 by Daniel Alfaro. All Right Reserved.</h1>
+    <h1 class="copyright-botton">v.1.0</h1>
+  </div>
+
+  <ion-alert mode="ios" [isOpen]="isAlertOpen" header="ALERTA" subHeader="Esta accion borrara todas las tareas antes creadas"
+    message="¿Esta seguro que quiere eliminar todas las tareas?" [buttons]="alertButtons"
+    (didDismiss)="setOpen(false)"></ion-alert>
+
 </ion-content>

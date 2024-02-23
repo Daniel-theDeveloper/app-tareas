@@ -1,0 +1,24 @@
+ion-item {
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
+}
+
+.copyright-block {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.copyright-top {
+    font-size: 12px;
+    color: gray;
+    text-align: center;
+}
+
+.copyright-botton {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
