@@ -4,6 +4,7 @@ import { DatabaseService } from '../services/database.service';
 import { SelectedTaskService } from '../services/selected-task.service';
 import { DatesService } from '../services/dates.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfigService } from '../config/config.service';
 
 @Component({
   selector: 'app-tab1',
@@ -19,17 +20,20 @@ export class Tab1Page {
   lowPriority: any[] = ["cargando"];
   mediumPriority: any[] = ["cargando"];
   highPriority: any[] = ["cargando"];
-  selectedLanguaje = "en";
 
   constructor(
     private database: DatabaseService,
     private selectedTask: SelectedTaskService,
     private navCtrl: NavController,
     private dates: DatesService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private config: ConfigService,
   ) {
-    this.translateService.setDefaultLang(this.selectedLanguaje);
-    this.translateService.use(this.selectedLanguaje);
+    this.config.initializPlugin();
+    this.config.getLanguaje().then((res: string) => {
+      this.translateService.setDefaultLang(res);
+      this.translateService.use(res);
+    });
   }
 
   async ngOnInit() {
