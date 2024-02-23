@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DatabaseService } from '../services/database.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -6,29 +8,39 @@ import { Component } from '@angular/core';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  selectedLanguaje: string = "Español"
+  private languaje: number = 0;
+  selectedLanguaje: string = "";
   isAlertOpen: boolean = false;
   public alertButtons = [
     {
       text: 'No',
       role: 'cancel',
-      handler: () => {
-        console.log('Mejor no');
-      },
     },
     {
       text: '¡Si!',
       role: 'confirm',
       handler: () => {
-        console.log('Alert confirmed');
+        this.deleteAll();
       },
     },
   ];
 
-  constructor() {}
+  constructor(
+    private database: DatabaseService,
+    private toastController: ToastController
+  ) {}
+
+  ngOnInit() {
+    if (this.languaje == 0) {
+      this.selectedLanguaje = "Español";
+    } else if (this.languaje == 1) {
+      this.selectedLanguaje = "English";
+    } else {
+      console.error("Configuracion invalida");
+    }
+  }
 
   clickMe(option: number) {
-    console.log("Test");
     if (option === 3) {
       this.isAlertOpen = true;
     }
@@ -38,4 +50,13 @@ export class Tab3Page {
     this.isAlertOpen = isOpen;
   }
 
+  async deleteAll() {
+    await this.database.deleteAllTask();
+    const toast = await this.toastController.create({
+      message: 'Todas las tareas fueron borradas, por favor reinicie la aplicacion',
+      duration: 1500,
+      position: 'bottom',
+    });
+    toast.present();
+  }
 }

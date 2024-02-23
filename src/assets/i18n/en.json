@@ -1,0 +1,23 @@
+{
+    "TEST": {
+        "TASK-TITLE-PENDING": "Pending test task",
+        "TASK-TITLE-FINISH": "Finish test task"
+    },
+    "HOME": {
+        "TITLE": "Calendar app",
+        "SUB-TITLE": "Welcome again",
+        "LOADING": "Loading tasks",
+        "TASKS": "tasks",
+        "NO-TASKS":"No tasks",
+        "LOW-PRIORITY": "Low priority",
+        "MEDIUM-PRIORITY": "Medium",
+        "HIGH-PRIORITY":"High priority",
+        "TASKS-HEADER":"Pending tasks for now",
+        "STATUS":"Status",
+        "PENDING":"Pending",
+        "FINISH":"Finish",
+        "HOUR":"Hour",
+        "NO-TASKS-HEADER":"NO TASKS AT THIS TIME",
+        "NO-TASKS-SUBHEADER": "Have a nice day!"
+    }
+}

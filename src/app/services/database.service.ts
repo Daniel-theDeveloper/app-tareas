@@ -177,13 +177,22 @@ export class DatabaseService {
       const query = 'DELETE FROM Tasks WHERE id='+id;
       const result = await this.db.query(query);
       this.loadTasks();
-      console.log("Resultado:") //borrar esto
-      console.log(result) //borrar esto
+      console.log("Resultado:");
+      console.log(result);
   
       return true;
     } catch (e: any) {
       console.error(e);
       return false;
+    }
+  }
+
+  async deleteAllTask() {
+    try {
+      const query = 'DELETE FROM Tasks';
+      const result = await this.db.query(query);
+    } catch (e: any) {
+      console.error(e);
     }
   }
 

@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
 import { SelectedTaskService } from '../services/selected-task.service';
 import { DatesService } from '../services/dates.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab1',
@@ -18,17 +19,22 @@ export class Tab1Page {
   lowPriority: any[] = ["cargando"];
   mediumPriority: any[] = ["cargando"];
   highPriority: any[] = ["cargando"];
+  selectedLanguaje = "en";
 
   constructor(
     private database: DatabaseService,
     private selectedTask: SelectedTaskService,
     private navCtrl: NavController,
-    private dates: DatesService
-    ) {}
+    private dates: DatesService,
+    private translateService: TranslateService
+  ) {
+    this.translateService.setDefaultLang(this.selectedLanguaje);
+    this.translateService.use(this.selectedLanguaje);
+  }
 
   async ngOnInit() {
     this.loadpage = true;
-    
+
     this.today = this.dates.getTodayDate();
     await this.database.initializPlugin().then((res: any) => {
       if (res) {

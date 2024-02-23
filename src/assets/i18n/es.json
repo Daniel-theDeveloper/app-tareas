@@ -1,0 +1,23 @@
+{
+    "TEST": {
+        "TASK-TITLE-PENDING": "Tarea de prueba pendiente",
+        "TASK-TITLE-FINISH": "Tarea de prueba terminada"
+    },
+    "HOME": {
+        "TITLE": "Agenda app",
+        "SUB-TITLE": "Bienvenido de nuevo",
+        "LOADING": "Cargando tareas",
+        "TASKS": "tareas",
+        "NO-TASKS":"Ninguna tareas",
+        "LOW-PRIORITY": "Baja prioridad",
+        "MEDIUM-PRIORITY": "Intermedias",
+        "HIGH-PRIORITY":"Importantes",
+        "TASKS-HEADER":"Tareas pendientes para ahora",
+        "STATUS":"Estado",
+        "PENDING":"Pendiente",
+        "FINISH":"Terminada",
+        "HOUR":"Hora",
+        "NO-TASKS-HEADER":"NO HAY TAREAS POR AHORA",
+        "NO-TASKS-SUBHEADER": "Disfute su dia libre"
+    }
+}
