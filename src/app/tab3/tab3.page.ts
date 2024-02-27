@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
 import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab3',
@@ -8,8 +9,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  private languaje: number = 0;
-  selectedLanguaje: string = "";
+  selectedLanguage = 'es';
   isAlertOpen: boolean = false;
   public alertButtons = [
     {
@@ -27,18 +27,11 @@ export class Tab3Page {
 
   constructor(
     private database: DatabaseService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private translateService: TranslateService
   ) {}
 
-  ngOnInit() {
-    if (this.languaje == 0) {
-      this.selectedLanguaje = "Español";
-    } else if (this.languaje == 1) {
-      this.selectedLanguaje = "English";
-    } else {
-      console.error("Configuracion invalida");
-    }
-  }
+  ngOnInit() {}
 
   clickMe(option: number) {
     if (option === 3) {
@@ -58,5 +51,9 @@ export class Tab3Page {
       position: 'bottom',
     });
     toast.present();
+  }
+
+  selectLanguage(lang: string) {
+    this.translateService.use(lang);
   }
 }

@@ -48,7 +48,7 @@ export class Tab2Page {
     private database: DatabaseService,
     private navCtrl: NavController,
     private dates: DatesService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.database.developMode == false) {

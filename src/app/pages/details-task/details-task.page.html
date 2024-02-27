@@ -3,10 +3,10 @@
     <ion-buttons slot="secondary" (click)="goBack()">
       <ion-button fill="clear">
         <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
-        Salir
+        {{ 'DETAILS.EXIT' | translate }}
       </ion-button>
     </ion-buttons>
-    <ion-title>Detalles</ion-title>
+    <ion-title>{{ 'DETAILS.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,11 +15,11 @@
     <div class="details-header">
       <div class="line-priority1"></div>
       <div class="details-header-title">
-        <h1 class="details-header-title1">Tarea de prueba</h1>
+        <h1 class="details-header-title1">{{ 'TEST.TITLE' | translate }}</h1>
         <div class="details-header-subtitle">
-          <h1 class="details-priority">Prioridad baja</h1>
+          <h1 class="details-priority">{{ 'DETAILS.LOW' | translate }}</h1>
           <h1 class="details-separator">-</h1>
-          <h1 class="details-status">Finalizado</h1>
+          <h1 class="details-status">{{ 'DETAILS.FINISH' | translate }}</h1>
         </div>
       </div>
       <div class="status-block1">
@@ -27,21 +27,21 @@
       </div>
     </div>
     <div class="details-date-block">
-      <h1 class="details-date-label">Fecha:</h1>
-      <h1 class="details-date">12 de enero</h1>
+      <h1 class="details-date-label">{{ 'DETAILS.DATE' | translate }}:</h1>
+      <h1 class="details-date">{{ 'TEST.DATE' | translate }}</h1>
     </div>
     <div class="details-hour-block">
-      <h1 class="details-hour-label">Hora:</h1>
+      <h1 class="details-hour-label">{{ 'DETAILS.HOUR' | translate }}:</h1>
       <h1 class="details-hour">12:00:pm</h1>
     </div>
     <h1 class="details-subtitle">Descripcion de la tarea de prueba</h1>
     <div class="separator"></div>
     <ion-button class="details-button" mode="ios" size="default" fill="outline" expand="block" (click)="editTask(1)" color="success"><ion-icon slot="start"
-        name="pencil"></ion-icon>Editar</ion-button>
+        name="pencil"></ion-icon>{{ 'DETAILS.EDIT' | translate }}</ion-button>
     <ion-button class="details-button" mode="ios" size="default" fill="outline" expand="block" (click)="deleteTask(1)" color="danger"><ion-icon slot="start"
-        name="trash"></ion-icon>Eliminar</ion-button>
+        name="trash"></ion-icon>{{ 'DETAILS.DELETE' | translate }}</ion-button>
     <ion-button class="details-button" mode="ios" size="default" fill="solid" expand="block" (click)="finishTask(1)" color="success"><ion-icon slot="start"
-        name="checkmark"></ion-icon>Finalizar Tarea</ion-button>
+        name="checkmark"></ion-icon>{{ 'DETAILS.FINISH-TASK' | translate }}</ion-button>
   </div>
 
   <div *ngIf="developMode == false" class="details">
@@ -55,12 +55,12 @@
           <h1 *ngIf="task.priority == 2" class="details-header-title2">{{task.title}}</h1>
           <h1 *ngIf="task.priority == 3" class="details-header-title3">{{task.title}}</h1>
           <div class="details-header-subtitle">
-            <h1 *ngIf="task.priority == 1" class="details-priority">Prioridad baja</h1>
-            <h1 *ngIf="task.priority == 2" class="details-priority">Prioridad intermedia</h1>
-            <h1 *ngIf="task.priority == 3" class="details-priority">Prioridad alta</h1>
+            <h1 *ngIf="task.priority == 1" class="details-priority">{{ 'DETAILS.LOW' | translate }}</h1>
+            <h1 *ngIf="task.priority == 2" class="details-priority">{{ 'DETAILS.MEDIUM' | translate }}</h1>
+            <h1 *ngIf="task.priority == 3" class="details-priority">{{ 'DETAILS.HIGH' | translate }}</h1>
             <h1 class="details-separator">-</h1>
-            <h1 *ngIf="task.status == 1" class="details-status">Pendiente</h1>
-            <h1 *ngIf="task.status == 2" class="details-status">Finalizado</h1>
+            <h1 *ngIf="task.status == 1" class="details-status">{{ 'DETAILS.PENDING' | translate }}</h1>
+            <h1 *ngIf="task.status == 2" class="details-status">{{ 'DETAILS.FINISH' | translate }}</h1>
           </div>
         </div>
         <div *ngIf="task.status == 1" class="status-block2">
@@ -71,28 +71,28 @@
         </div>
       </div>
       <div class="details-date-block">
-        <h1 class="details-date-label">Fecha:</h1>
+        <h1 class="details-date-label">{{ 'DETAILS.DATE' | translate }}:</h1>
         <h1 class="details-date">{{task.date | date :  "dd-MM-yyyy"}}</h1>
       </div>
       <div class="details-hour-block">
-        <h1 class="details-hour-label">Hora:</h1>
+        <h1 class="details-hour-label">{{ 'DETAILS.HOUR' | translate }}:</h1>
         <h1 class="details-hour">{{task.hour}}</h1>
       </div>
       <h1 class="details-subtitle">{{task.description}}</h1>
       <div class="separator"></div>
       <ion-button class="details-button" mode="ios" size="default" fill="outline" expand="block" (click)="editTask(task.id)" color="success"><ion-icon slot="start"
-          name="pencil"></ion-icon>Editar</ion-button>
+          name="pencil"></ion-icon>{{ 'DETAILS.EDIT' | translate }}</ion-button>
       <ion-button class="details-button" mode="ios" size="default" fill="outline" expand="block" (click)="deleteTask(task.id)" color="danger"><ion-icon slot="start"
-          name="trash"></ion-icon>Eliminar</ion-button>
+          name="trash"></ion-icon>{{ 'DETAILS.DELETE' | translate }}</ion-button>
       <ion-button *ngIf="task.status == 1" class="details-button" mode="ios" size="default" fill="solid" expand="block" (click)="finishTask(task.id)" color="success"><ion-icon slot="start"
-          name="checkmark"></ion-icon>Finalizar Tarea</ion-button>
+          name="checkmark"></ion-icon>{{ 'DETAILS.FINISH-TASK' | translate }}</ion-button>
     </div>
 
   </div>
 
-  <ion-toast [isOpen]="taskFinishToast" message="Tarea finalizada" [duration]="5000"
+  <ion-toast [isOpen]="taskFinishToast" message="{{ 'DETAILS.FINISH-DONE' | translate }}" [duration]="5000"
     (didDismiss)="setOpen(false)"></ion-toast>
 
-  <ion-toast [isOpen]="taskDeleteToast" message="Tarea eliminada" [duration]="5000"
+  <ion-toast [isOpen]="taskDeleteToast" message="{{ 'DETAILS.DELETE-DONE' | translate }}" [duration]="5000"
     (didDismiss)="setOpen2(false)"></ion-toast>
 </ion-content>

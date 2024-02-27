@@ -1,7 +1,18 @@
 {
     "TEST": {
+        "TITLE": "Tarea de prueba",
+        "DATE": "12 de enero",
         "TASK-TITLE-PENDING": "Tarea de prueba pendiente",
-        "TASK-TITLE-FINISH": "Tarea de prueba terminada"
+        "TASK-TITLE-FINISH": "Tarea de prueba terminada",
+        "TASK-LOW": "Tarea de prueba de baja prioridad",
+        "TASK-MEDIUM": "Tarea de prueba de prioridad intermedia",
+        "TASK-HIGH": "Tarea de prueba de prioridad alta"
+    },
+    "TAP": {
+        "HOME": "Principal",
+        "BOARD": "Tablero",
+        "HISTORIAL": "Historial",
+        "CONFIG": "Configuracion"
     },
     "HOME": {
         "TITLE": "Agenda app",
@@ -19,5 +30,75 @@
         "HOUR":"Hora",
         "NO-TASKS-HEADER":"NO HAY TAREAS POR AHORA",
         "NO-TASKS-SUBHEADER": "Disfute su dia libre"
+    },
+    "BOARD": {
+        "LOCALE": "es-ES",
+        "TITLE": "Tablero",
+        "PENDING": "Pendiente",
+        "FINISH": "Terminada",
+        "NO-TASKS-TITLE": "NO HAY TAREAS PARA ESTE DIA",
+        "NO-TASK-SUBTITLE": "¡Dia libre!"
+    },
+    "CONFIG": {
+        "TITLE": "Configuracion",
+        "PERMISSIONS": "Gestionar permisos",
+        "LANGUAJE": "Idioma",
+        "SPANISH": "Español",
+        "ENGLISH": "Ingles",
+        "DELETE": "Borrar todo",
+        "ABOUT": "Acerca de",
+        "EXIT": "Salir",
+        "COPYRIGH": "Copyright © 2024 by Daniel Alfaro. Todos los derechos reservados.",
+        "ALERT": "ALERTA",
+        "ACTION": "Esta accion borrara todas las tareas antes creadas",
+        "ASK-DELETE": "¿Esta seguro que quiere eliminar todas las tareas?",
+        "YES": "¡Si!",
+        "NO": "No"
+    },
+    "HISTORIAL": {
+        "TITLE": "Historial de todas las tareas",
+        "LOADING": "Cargando tareas",
+        "NO-TASK-TITLE": "Aun no ha creado ninguna tarea",
+        "NO-TASK-SUBTITLE": "Empiece creando tu primera tarea",
+        "ADD": "Crear tarea"
+    },
+    "FORMS": {
+        "TITLE-CREATE": "Crear nueva tarea",
+        "TITLE-EDIT": "Editar tarea",
+        "EXIT": "Salir",
+        "RETURN": "Regresar",
+        "TASK-TITLE": "Titulo",
+        "PRIORITY": "Prioridad",
+        "PRIORITY-SELECT": "Seleccione una prioridad",
+        "LOW": "Baja",
+        "MEDIUM": "Intermedia",
+        "HIGH": "Importantes",
+        "DATE": "Fecha",
+        "HOUR": "Hora",
+        "DESCRIPTION": "Descripcion",
+        "CREATE": "Crear Tarea",
+        "FINISH": "Finalizar",
+        "ALERT-HEADER": "Salirse sin guardar",
+        "ALERT-FOOTER": "¿Seguro quiere salirse sin guardar los cambios?",
+        "CREATE-SUCCESS": "Tarea creada con exito, por favor, recargue la pagina",
+        "EDIT-SUCCESS": "Tarea configurada con exito",
+        "MESSAGGE-ERROR-SQL": "Algo salio mal, por favor reportelo",
+        "MESSAGGE-ERROR-FORM":"Por favor, llene todos los campos"
+    },
+    "DETAILS": {
+        "TITLE": "Detalles",
+        "EXIT": "Salir",
+        "LOW": "Prioridad baja",
+        "MEDIUM": "Prioridad intermedia",
+        "HIGH": "Prioridad alta",
+        "PENDING": "Pendiente",
+        "FINISH": "Finalizada",
+        "DATE": "Fecha",
+        "HOUR": "Hora",
+        "EDIT": "Editar",
+        "DELETE": "Eliminar",
+        "FINISH-TASK": "Finalizar Tarea",
+        "FINISH-DONE": "Tarea finalizada",
+        "DELETE-DONE": "Tarea eliminada"
     }
 }

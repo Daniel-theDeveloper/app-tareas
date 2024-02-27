@@ -1,7 +1,18 @@
 {
     "TEST": {
+        "TITLE": "Testing task",
+        "DATE": "January 12",
         "TASK-TITLE-PENDING": "Pending test task",
-        "TASK-TITLE-FINISH": "Finish test task"
+        "TASK-TITLE-FINISH": "Finish test task",
+        "TASK-LOW": "Low priority task",
+        "TASK-MEDIUM": "Medium priority task",
+        "TASK-HIGH": "High priority task"
+    },
+    "TAP": {
+        "HOME": "Home",
+        "BOARD": "Board",
+        "HISTORIAL": "Historial",
+        "CONFIG": "Config"
     },
     "HOME": {
         "TITLE": "Calendar app",
@@ -10,7 +21,7 @@
         "TASKS": "tasks",
         "NO-TASKS":"No tasks",
         "LOW-PRIORITY": "Low priority",
-        "MEDIUM-PRIORITY": "Medium",
+        "MEDIUM-PRIORITY": "Medium priority",
         "HIGH-PRIORITY":"High priority",
         "TASKS-HEADER":"Pending tasks for now",
         "STATUS":"Status",
@@ -19,5 +30,75 @@
         "HOUR":"Hour",
         "NO-TASKS-HEADER":"NO TASKS AT THIS TIME",
         "NO-TASKS-SUBHEADER": "Have a nice day!"
+    },
+    "BOARD": {
+        "LOCALE": "en-US",
+        "TITLE": "Board",
+        "PENDING": "Pending",
+        "FINISH": "Finish",
+        "NO-TASKS-TITLE": "NO ASSIGNMENTS FOR THIS DAY",
+        "NO-TASK-SUBTITLE": "Day off!"
+    },
+    "CONFIG": {
+        "TITLE": "Config",
+        "PERMISSIONS": "Manage permissions",
+        "LANGUAJE": "Languaje",
+        "SPANISH": "Spanish",
+        "ENGLISH": "English",
+        "DELETE": "Delete all",
+        "ABOUT": "About us",
+        "EXIT": "Exit",
+        "COPYRIGH": "Copyright © 2024 by Daniel Alfaro. All Right Reserved.",
+        "ALERT": "ALERT",
+        "ACTION": "This action will delete all previously created tasks.",
+        "ASK-DELETE": "Are you sure you want delete all previous tasks?",
+        "YES": "Yes!",
+        "NO": "No"
+    },
+    "HISTORIAL": {
+        "TITLE": "All task history",
+        "LOADING": "Loading tasks",
+        "NO-TASK-TITLE": "No task has been created yet",
+        "NO-TASK-SUBTITLE": "Start creating your first task",
+        "ADD": "Add task"
+    },
+    "FORMS": {
+        "TITLE-CREATE": "Create a new task",
+        "TITLE-EDIT": "Edit task",
+        "EXIT": "Exit",
+        "RETURN": "Return",
+        "TASK-TITLE": "Title",
+        "PRIORITY": "Priority",
+        "PRIORITY-SELECT": "Select a priority",
+        "LOW": "Low",
+        "MEDIUM": "Medium",
+        "HIGH": "Important",
+        "DATE": "Date",
+        "HOUR": "Hour",
+        "DESCRIPTION": "Description",
+        "CREATE": "Create Task",
+        "FINISH": "Finish",
+        "ALERT-HEADER": "Exit without save",
+        "ALERT-FOOTER": "Do you want to exit without save?",
+        "CREATE-SUCCESS": "Task successfully created, please reload the page",
+        "EDIT-SUCCESS": "This task was edit with success",
+        "MESSAGGE-ERROR-SQL": "Something went wrong, please report it",
+        "MESSAGGE-ERROR-FORM":"Please fill in all fields"
+    },
+    "DETAILS": {
+        "TITLE": "Details",
+        "EXIT": "Exit",
+        "LOW": "Low priority",
+        "MEDIUM": "Medium priority",
+        "HIGH": "High priority",
+        "PENDING": "Pending task",
+        "FINISH": "Finish task",
+        "DATE": "Date",
+        "HOUR": "Hour",
+        "EDIT": "Edit task",
+        "DELETE": "Delete task",
+        "FINISH-TASK": "Finish task",
+        "FINISH-DONE": "This task was finish",
+        "DELETE-DONE": "This task was delete"
     }
 }

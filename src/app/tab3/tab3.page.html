@@ -1,25 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Configuracion
+      {{ 'CONFIG.TITLE' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item (click)="clickMe(1)" color="light"><ion-icon name="layers"></ion-icon> Gestionar permisos</ion-item>
-  <ion-item (click)="clickMe(2)" color="light"><ion-icon name="chatbox"></ion-icon> Idioma: {{selectedLanguaje}}</ion-item>
-  <ion-item (click)="clickMe(3)" color="light"><ion-icon name="trash"></ion-icon> Borrar todo</ion-item>
-  <ion-item (click)="clickMe(4)" color="light"><ion-icon name="information-circle"></ion-icon> Acerca de</ion-item>
-  <ion-item (click)="clickMe(5)" color="light"><ion-icon name="log-in"></ion-icon> Salir</ion-item>
+  <ion-item (click)="clickMe(1)" color="light"><ion-icon name="layers"></ion-icon> {{ 'CONFIG.PERMISSIONS' | translate }}</ion-item>
+  <ion-item (click)="clickMe(2)" color="light">
+    <ion-icon name="chatbox"></ion-icon> {{ 'CONFIG.LANGUAJE' | translate }}:
+  <select
+      [ngModel]="selectedLanguage"
+      (ngModelChange)="selectLanguage($event)">
+      <option value="es">
+          {{ 'CONFIG.SPANISH' | translate }}
+      </option>
+      <option value="en">
+          {{ 'CONFIG.ENGLISH' | translate }}
+      </option>
+  </select>
+  </ion-item>
+  <ion-item (click)="clickMe(3)" color="light"><ion-icon name="trash"></ion-icon> {{ 'CONFIG.DELETE' | translate }}</ion-item>
+  <ion-item (click)="clickMe(4)" color="light"><ion-icon name="information-circle"></ion-icon> {{ 'CONFIG.ABOUT' | translate }}</ion-item>
+  <ion-item (click)="clickMe(5)" color="light"><ion-icon name="log-in"></ion-icon> {{ 'CONFIG.EXIT' | translate }}</ion-item>
 
   <div class="copyright-block">
-    <h1 class="copyright-top">Copyright © 2024 by Daniel Alfaro. All Right Reserved.</h1>
+    <h1 class="copyright-top">{{ 'CONFIG.COPYRIGH' | translate }}</h1>
     <h1 class="copyright-botton">v.1.0</h1>
   </div>
 
-  <ion-alert mode="ios" [isOpen]="isAlertOpen" header="ALERTA" subHeader="Esta accion borrara todas las tareas antes creadas"
-    message="¿Esta seguro que quiere eliminar todas las tareas?" [buttons]="alertButtons"
+  <ion-alert mode="ios" [isOpen]="isAlertOpen" header="{{ 'CONFIG.ALERT' | translate }}" subHeader="{{ 'CONFIG.ACTION' | translate }}"
+    message="{{ 'CONFIG.ASK-DELETE' | translate }}" [buttons]="alertButtons"
     (didDismiss)="setOpen(false)"></ion-alert>
 
 </ion-content>

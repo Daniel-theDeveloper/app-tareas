@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { FormControl, FormGroup } from '@angular/forms'
 import { DatabaseService } from '../../services/database.service';
 import { DatesService } from '../../services/dates.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-task',
@@ -25,13 +26,18 @@ export class CreateTaskPage implements OnInit {
     private location: Location,
     private toastController: ToastController,
     private database: DatabaseService,
-    private dates: DatesService
+    private dates: DatesService,
+    private translation: TranslatePipe
     ) { }
 
   ngOnInit() {
   }
 
   async createTask() {
+    const createMessage: string = this.translation.transform('FORMS.CREATE-SUCCESS');
+    const messageErrorSQL: string = this.translation.transform('FORMS.MESSAGGE-ERROR-SQL');
+    const messageErrorForm: string = this.translation.transform('FORMS.MESSAGGE-ERROR-FORM');
+
     this.info = this.task.value;
     let today = this.dates.getTodayDate();
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
@@ -39,7 +45,7 @@ export class CreateTaskPage implements OnInit {
         try{
           await this.database.addTasks(this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
           const toast = await this.toastController.create({
-            message: 'Tarea creada con exito, por favor, recargue la pagina',
+            message: createMessage,
             duration: 1500,
             position: 'bottom',
           });
@@ -49,7 +55,7 @@ export class CreateTaskPage implements OnInit {
           });
         } catch (e: any) {
           const toast = await this.toastController.create({
-            message: 'Algo salio mal, por favor reportelo',
+            message: messageErrorSQL,
             duration: 1500,
             position: 'bottom',
           });
@@ -61,11 +67,9 @@ export class CreateTaskPage implements OnInit {
         console.log(this.info);
         this.location.back();
       }
-      console.log("Todo lleno");
     } else {
-      console.error("Hay una vacia");
       const toast = await this.toastController.create({
-        message: 'Por favor, llene todos los campos',
+        message: messageErrorForm,
         duration: 1500,
         position: 'bottom',
       });

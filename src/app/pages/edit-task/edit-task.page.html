@@ -3,49 +3,49 @@
     <ion-buttons id="present-alert" slot="secondary">
       <ion-button fill="clear">
         <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
-        Salir
+        {{ 'FORMS.EXIT' | translate }}
       </ion-button>
     </ion-buttons>
-    <ion-title>Editar tarea</ion-title>
+    <ion-title>{{ 'FORMS.TITLE-EDIT' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="task" (ngSubmit)="editTask()">
     <ion-item color="light">
-      <ion-label>Titulo:</ion-label>
+      <ion-label>{{ 'FORMS.TASK-TITLE' | translate }}:</ion-label>
       <ion-input type="Text input" maxlength="50" formControlName="title"></ion-input>
     </ion-item>
 
     <ion-item color="light">
-      <ion-select label="Prioridad" mode="md" placeholder="Seleccione una prioridad" formControlName="priority">
-        <ion-select-option value="1">Baja</ion-select-option>
-        <ion-select-option value="2">Intermedia</ion-select-option>
-        <ion-select-option value="3">Importante</ion-select-option>
+      <ion-select label="{{ 'FORMS.PRIORITY' | translate }}" mode="md" placeholder="{{ 'FORMS.PRIORITY-SELECT' | translate }}" formControlName="priority">
+        <ion-select-option value="1">{{ 'FORMS.LOW' | translate }}</ion-select-option>
+        <ion-select-option value="2">{{ 'FORMS.MEDIUM' | translate }}</ion-select-option>
+        <ion-select-option value="3">{{ 'FORMS.HIGH' | translate }}</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item color="light">
-      <ion-label>Fecha:</ion-label>
+      <ion-label>{{ 'FORMS.DATE' | translate }}:</ion-label>
       <ion-input type="date" formControlName="date"></ion-input>
       <ion-icon name="today"></ion-icon>
     </ion-item>
 
     <ion-item color="light">
-      <ion-label>Hora:</ion-label>
+      <ion-label>{{ 'FORMS.HOUR' | translate }}:</ion-label>
       <ion-input type="time" formControlName="time"></ion-input>
       <ion-icon name="time"></ion-icon>
     </ion-item>
 
     <ion-item color="light">
-      <ion-textarea label="Descripcion:" labelPlacement="floating" type="Text input" maxlength="200" [counter]="true"
+      <ion-textarea label="{{ 'FORMS.DESCRIPTION' | translate }}:" labelPlacement="floating" type="Text input" maxlength="200" [counter]="true"
         formControlName="description" style="height: 120px;"></ion-textarea>
     </ion-item>
     <div style="height: 30px;"></div>
 
-    <ion-button class="done_buttom" type="submit" expand="block" fill="solid" color="success">Finalizar</ion-button>
+    <ion-button class="done_buttom" type="submit" expand="block" fill="solid" color="success">{{ 'FORMS.FINISH' | translate }}</ion-button>
   </form>
 
-  <ion-alert mode="ios" trigger="present-alert" header="Salirse sin guardar"
-    message="¿Seguro quiere salirse sin guardar los cambios?" [buttons]="alertButtons"></ion-alert>
+  <ion-alert mode="ios" trigger="present-alert" header="{{ 'FORMS.ALERT-HEADER' | translate }}"
+    message="{{ 'FORMS.ALERT-FOOTER' | translate }}" [buttons]="alertButtons"></ion-alert>
 </ion-content>

@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { FormControl, FormGroup } from '@angular/forms'
 import { DatabaseService } from '../../services/database.service';
 import { SelectedTaskService } from '../../services/selected-task.service'
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-task',
@@ -11,20 +12,20 @@ import { SelectedTaskService } from '../../services/selected-task.service'
   styleUrls: ['./edit-task.page.scss'],
 })
 export class EditTaskPage implements OnInit {
+  private exit_text: string = this.traslation.transform('FORMS.EXIT');
+  private return_text: string = this.traslation.transform('FORMS.RETURN');
+
   alertButtons = [
     {
-      text: 'Salir',
+      text: this.exit_text,
       role: 'confirm',
       handler: () => {
         this.location.back();
       },
     },
     {
-      text: 'Regresar',
-      role: 'cancel',
-      handler: () => {
-        console.log('Se decidio seguir editando');
-      },
+      text: this.return_text,
+      role: 'cancel'
     },
   ];
   taskSelected: any;
@@ -41,7 +42,8 @@ export class EditTaskPage implements OnInit {
     private location: Location,
     private toastController: ToastController,
     private database: DatabaseService,
-    private idTask: SelectedTaskService
+    private idTask: SelectedTaskService,
+    private traslation: TranslatePipe
   ) { }
 
   ngOnInit() {
@@ -81,6 +83,10 @@ export class EditTaskPage implements OnInit {
   }
 
   async editTask() {
+    const messageSuccess: string = this.traslation.transform('FORMS.EDIT-SUCCESS');
+    const messageErrorSQL: string = this.traslation.transform('FORMS.MESSAGGE-ERROR-SQL');
+    const messageErrorForm: string = this.traslation.transform('FORMS.MESSAGGE-ERROR-FORM');
+
     this.info = this.task.value;
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
       if (this.database.developMode == false) {
@@ -89,7 +95,7 @@ export class EditTaskPage implements OnInit {
   
           await this.database.updateTasks(id, this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
           const toast = await this.toastController.create({
-            message: 'Tarea configurada con exito',
+            message: messageSuccess,
             duration: 1500,
             position: 'bottom',
           });
@@ -99,7 +105,7 @@ export class EditTaskPage implements OnInit {
         } catch (e: any) {
           console.error(e);
           const toast = await this.toastController.create({
-            message: 'Algo salio mal, por favor reportelo',
+            message: messageErrorSQL,
             duration: 1500,
             position: 'bottom',
           });
@@ -112,7 +118,7 @@ export class EditTaskPage implements OnInit {
       }
     } else {
       const toast = await this.toastController.create({
-        message: 'Por favor, llene todos los campos',
+        message: messageErrorForm,
         duration: 1500,
         position: 'bottom',
       });

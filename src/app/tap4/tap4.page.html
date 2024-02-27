@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-  <h1 class="title">Historial de todas las tareas</h1>
+  <h1 class="title">{{ 'HISTORIAL.TITLE' | translate }}</h1>
 
   <div class="date-container">
     <div class="date-details">
@@ -20,7 +20,7 @@
           <div class="task-details" (click)="details(1)">
             <div class="line-priority1"></div>
             <div class="task-title">
-              <h1 class="letters1">Tarea de prueba de baja prioridad</h1>
+              <h1 class="letters1">{{ 'TEST.TASK-LOW' | translate }}</h1>
               <h1 class="hour">12:00:pm</h1>
             </div>
             <div class="status-block2">
@@ -34,7 +34,7 @@
           <div class="task-details" (click)="details(2)">
             <div class="line-priority2"></div>
             <div class="task-title">
-              <h1 class="letters2">Tarea de prueba de intermedia prioridad</h1>
+              <h1 class="letters2">{{ 'TEST.TASK-MEDIUM' | translate }}</h1>
               <h1 class="hour">12:00:pm</h1>
             </div>
             <div class="status-block1">
@@ -48,7 +48,7 @@
           <div class="task-details" (click)="details(3)">
             <div class="line-priority3"></div>
             <div class="task-title">
-              <h1 class="letters3">Tarea de prueba de alta prioridad</h1>
+              <h1 class="letters3">{{ 'TEST.TASK-HIGH' | translate }}</h1>
               <h1 class="hour">12:00:pm</h1>
             </div>
             <div class="status-block2">
@@ -62,7 +62,7 @@
         <!-- Pagina de carga -->
         <div *ngIf="loadpage == true" class="loader">
           <div class="loader-icon"></div>
-          <h1 class="loader-text">Cargando tareas</h1>
+          <h1 class="loader-text">{{ 'HISTORIAL.LOADING' | translate }}</h1>
         </div>
 
         <!-- Pagina de datos vacios -->
@@ -71,10 +71,10 @@
             <ion-icon class="no-task-icon" name="clipboard"></ion-icon>
           </div>
 
-          <h1 class="no-task-title">Aun no ha creado ninguna tarea</h1>
-          <h1 class="no-task-subtitle">Empiece creando tu primera tarea</h1>
+          <h1 class="no-task-title">{{ 'HISTORIAL.NO-TASK-TITLE' | translate }}</h1>
+          <h1 class="no-task-subtitle">{{ 'HISTORIAL.NO-TASK-SUBTITLE' | translate }}</h1>
           <ion-button mode="ios" color="tertiary" [routerLink]="['/create-task']"><ion-icon slot="start"
-              name="add"></ion-icon>Crear tarea</ion-button>
+              name="add"></ion-icon>{{ 'HISTORIAL.ADD' | translate }}</ion-button>
         </div>
 
         <!-- bloque de tareas -->

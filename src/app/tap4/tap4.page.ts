@@ -21,8 +21,8 @@ export class Tap4Page implements OnInit {
   constructor(
     private database: DatabaseService,
     private selectedTask: SelectedTaskService,
-    private navCtrl: NavController
-  ) { }
+    private navCtrl: NavController,
+  ) {}
 
   async ngOnInit() {
     if (this.database.developMode == false) {
