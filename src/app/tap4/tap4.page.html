@@ -83,7 +83,7 @@
             
             <div class="top-task">
               <div class="circle"></div>
-              <h1 class="date">{{task.date | date :  "dd-MM-yyyy"}}</h1>
+              <h1 class="date">{{task.datetime | date :  "dd-MM-yyyy"}}</h1>
             </div>
 
             <div class="bottom-task">
@@ -94,7 +94,7 @@
                 <div *ngIf="task.priority == 3" class="line-priority3"></div>
                 <div class="task-title">
                   <h1 class="letters1">{{task.title}}</h1>
-                  <h1 class="hour">{{task.hour}}</h1>
+                  <h1 class="hour">{{ task.datetime | date : "shortTime" }}</h1>
                 </div>
                 <div *ngIf="task.status == 1" class="status-block2">
                   <ion-icon class="status-icon" name="time"></ion-icon>

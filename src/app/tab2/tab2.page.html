@@ -101,8 +101,8 @@
           <div *ngFor="let task of tasks()">
 
             <div class="task" *ngIf="task.priority == 1">
-              <h1 class="hour" *ngIf="task.status == 1">{{task.hour}} - {{ 'BOARD.PENDING' | translate }}</h1>
-              <h1 class="hour" *ngIf="task.status == 2">{{task.hour}} - {{ 'BOARD.FINISH' | translate }}</h1>
+              <h1 class="hour" *ngIf="task.status == 1">{{task.datetime | date : "shortTime"}} - {{ 'BOARD.PENDING' | translate }}</h1>
+              <h1 class="hour" *ngIf="task.status == 2">{{task.datetime | date : "shortTime"}} - {{ 'BOARD.FINISH' | translate }}</h1>
               <div class="blockDetails">
                 <div class="taskLeft">
                   <div class="timeline"></div>
@@ -128,8 +128,8 @@
             </div>
 
             <div class="task" *ngIf="task.priority == 2">
-              <h1 class="hour" *ngIf="task.status == 1">{{task.hour}} - {{ 'BOARD.PENDING' | translate }}</h1>
-              <h1 class="hour" *ngIf="task.status == 2">{{task.hour}} - {{ 'BOARD.FINISH' | translate }}</h1>
+              <h1 class="hour" *ngIf="task.status == 1">{{task.datetime | date : "shortTime"}} - {{ 'BOARD.PENDING' | translate }}</h1>
+              <h1 class="hour" *ngIf="task.status == 2">{{task.datetime | date : "shortTime"}} - {{ 'BOARD.FINISH' | translate }}</h1>
               <div class="blockDetails">
                 <div class="taskLeft">
                   <div class="timeline"></div>
@@ -155,8 +155,8 @@
             </div>
 
             <div class="task" *ngIf="task.priority == 3">
-              <h1 class="hour" *ngIf="task.status == 1">{{task.hour}} - {{ 'BOARD.PENDING' | translate }}</h1>
-              <h1 class="hour" *ngIf="task.status == 2">{{task.hour}} - {{ 'BOARD.FINISH' | translate }}</h1>
+              <h1 class="hour" *ngIf="task.status == 1">{{task.datetime | date : "shortTime"}} - {{ 'BOARD.PENDING' | translate }}</h1>
+              <h1 class="hour" *ngIf="task.status == 2">{{task.datetime | date : "shortTime"}} - {{ 'BOARD.FINISH' | translate }}</h1>
               <div class="blockDetails">
                 <div class="taskLeft">
                   <div class="timeline"></div>

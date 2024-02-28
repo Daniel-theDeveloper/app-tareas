@@ -72,11 +72,11 @@
       </div>
       <div class="details-date-block">
         <h1 class="details-date-label">{{ 'DETAILS.DATE' | translate }}:</h1>
-        <h1 class="details-date">{{task.date | date :  "dd-MM-yyyy"}}</h1>
+        <h1 class="details-date">{{task.datetime | date :  "dd-MM-yyyy"}}</h1>
       </div>
       <div class="details-hour-block">
         <h1 class="details-hour-label">{{ 'DETAILS.HOUR' | translate }}:</h1>
-        <h1 class="details-hour">{{task.hour}}</h1>
+        <h1 class="details-hour">{{ task.datetime | date : "shortTime" }}</h1>
       </div>
       <h1 class="details-subtitle">{{task.description}}</h1>
       <div class="separator"></div>

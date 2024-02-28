@@ -66,7 +66,8 @@ export class Tab2Page {
     this.resDate = this.database.getDates();
 
     for (let dates of this.resDate()) {
-      this.highlightedDates.push({date: dates.date, textColor: '#ffcb69', backgroundColor: '#2a2511'});
+      let date = this.dates.getOnlyDate(dates.datetime);
+      this.highlightedDates.push({date: date, textColor: '#ffcb69', backgroundColor: '#2a2511'});
     }
   }
 

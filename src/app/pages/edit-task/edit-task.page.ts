@@ -52,10 +52,12 @@ export class EditTaskPage implements OnInit {
       let id = this.idTask.getSelectedTask();
       this.loadTask(id).then((res: boolean) => {
         if (res) {
+          const dateSQL = this.taskSelected()[0].datetime
+          let datetime = dateSQL.split('T');
           this.info.title = this.taskSelected()[0].title;
           this.info.priority = this.taskSelected()[0].priority;
-          this.info.date = this.taskSelected()[0].date;
-          this.info.time = this.taskSelected()[0].hour;
+          this.info.date = datetime[0];
+          this.info.time = datetime[1];
           this.info.description = this.taskSelected()[0].description;
           this.task.setValue(this.info);
         } else {
@@ -92,8 +94,9 @@ export class EditTaskPage implements OnInit {
       if (this.database.developMode == false) {
         try{
           let id = this.idTask.getSelectedTask();
+          let datetime = this.info.date+"T"+this.info.time
   
-          await this.database.updateTasks(id, this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
+          await this.database.updateTasks(id, this.info.title, 1, this.info.priority, datetime, this.info.description);
           const toast = await this.toastController.create({
             message: messageSuccess,
             duration: 1500,

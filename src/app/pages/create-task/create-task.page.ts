@@ -43,7 +43,8 @@ export class CreateTaskPage implements OnInit {
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
       if (this.database.developMode == false) {
         try{
-          await this.database.addTasks(this.info.title, 1, this.info.priority, this.info.date, this.info.time, this.info.description);
+          let datetime = this.info.date+"T"+this.info.time
+          await this.database.addTasks(this.info.title, 1, this.info.priority, datetime, this.info.description);
           const toast = await this.toastController.create({
             message: createMessage,
             duration: 1500,
