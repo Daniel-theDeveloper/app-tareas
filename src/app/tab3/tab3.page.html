@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item (click)="clickMe(1)" color="light"><ion-icon name="layers"></ion-icon> {{ 'CONFIG.PERMISSIONS' | translate }}</ion-item>
+  <!-- <ion-item (click)="clickMe(1)" color="light"><ion-icon name="layers"></ion-icon> {{ 'CONFIG.PERMISSIONS' | translate }}</ion-item> -->
   <ion-item (click)="clickMe(2)" color="light">
     <ion-icon name="chatbox"></ion-icon> {{ 'CONFIG.LANGUAJE' | translate }}:
   <select
-      [ngModel]="selectedLanguage"
+      [ngModel]="language"
       (ngModelChange)="selectLanguage($event)">
       <option value="es">
           {{ 'CONFIG.SPANISH' | translate }}
