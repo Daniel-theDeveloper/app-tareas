@@ -42,7 +42,7 @@
     "CONFIG": {
         "TITLE": "Config",
         "PERMISSIONS": "Manage permissions",
-        "LANGUAJE": "Languaje",
+        "LANGUAGE": "language",
         "SPANISH": "Spanish",
         "ENGLISH": "English",
         "DELETE": "Delete all",

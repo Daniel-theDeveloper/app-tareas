@@ -12,7 +12,7 @@
         "HOME": "Principal",
         "BOARD": "Tablero",
         "HISTORIAL": "Historial",
-        "CONFIG": "Configuracion"
+        "CONFIG": "Configuración"
     },
     "HOME": {
         "TITLE": "Agenda app",
@@ -29,7 +29,7 @@
         "FINISH":"Terminada",
         "HOUR":"Hora",
         "NO-TASKS-HEADER":"NO HAY TAREAS POR AHORA",
-        "NO-TASKS-SUBHEADER": "Disfute su dia libre"
+        "NO-TASKS-SUBHEADER": "Disfrute su dia libre"
     },
     "BOARD": {
         "LOCALE": "es-ES",
@@ -40,9 +40,9 @@
         "NO-TASK-SUBTITLE": "¡Dia libre!"
     },
     "CONFIG": {
-        "TITLE": "Configuracion",
+        "TITLE": "Configuración",
         "PERMISSIONS": "Gestionar permisos",
-        "LANGUAJE": "Idioma",
+        "LANGUAGE": "Idioma",
         "SPANISH": "Español",
         "ENGLISH": "Ingles",
         "DELETE": "Borrar todo",

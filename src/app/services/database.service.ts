@@ -79,11 +79,11 @@ export class DatabaseService {
   
       await this.db.execute(schema);
       this.loadTasks();
-      console.log("Base de datos creada con exito");
+      console.log("Base de datos creada con éxito");
       return true;
     } catch (e: any) {
       // console.error(e);
-      console.log("Iniciando aplicacion en modo Desarrollador");
+      console.log("Iniciando aplicación en modo Desarrollador");
       this.developMode = true;
       return false;
     }
