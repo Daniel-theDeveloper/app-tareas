@@ -41,6 +41,11 @@
       <ion-textarea label="{{ 'FORMS.DESCRIPTION' | translate }}:" labelPlacement="floating" type="Text input" maxlength="200" [counter]="true"
         formControlName="description" style="height: 120px;"></ion-textarea>
     </ion-item>
+    
+    <ion-item color="light">
+      <ion-toggle labelPlacement="start" justify="space-between" formControlName="alarm">{{ 'FORMS.ALARM' | translate }}</ion-toggle>
+    </ion-item>
+
     <div style="height: 30px;"></div>
 
     <ion-button class="done_buttom" type="submit" expand="block" fill="solid" color="success">{{ 'FORMS.CREATE' | translate }}</ion-button>

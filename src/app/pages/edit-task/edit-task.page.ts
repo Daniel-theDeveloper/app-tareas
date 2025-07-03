@@ -86,8 +86,8 @@ export class EditTaskPage implements OnInit {
 
   async editTask() {
     const messageSuccess: string = this.traslation.transform('FORMS.EDIT-SUCCESS');
-    const messageErrorSQL: string = this.traslation.transform('FORMS.MESSAGGE-ERROR-SQL');
-    const messageErrorForm: string = this.traslation.transform('FORMS.MESSAGGE-ERROR-FORM');
+    const messageErrorSQL: string = this.traslation.transform('FORMS.MESSAGE-ERROR-SQL');
+    const messageErrorForm: string = this.traslation.transform('FORMS.MESSAGE-ERROR-FORM');
 
     this.info = this.task.value;
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {

@@ -21,7 +21,7 @@
           <h1 class="numero">10 {{ 'HOME.TASKS' | translate }}</h1>
         </div>
       </div>
-  
+
       <div class="contador_content_bottom">
         <div class="contador3"><ion-icon class="icon" name="warning"></ion-icon>
           <div class="important_block">
@@ -37,21 +37,24 @@
         <div class="contador1"><ion-icon class="icon" name="today"></ion-icon>
           <h1 class="contador_title">{{ 'HOME.LOW-PRIORITY' | translate }}</h1>
           <h1 *ngIf="lowPriority[0].count == '0'" class="numero">{{ 'HOME.NO-TASKS' | translate }}</h1>
-          <h1 *ngIf="lowPriority[0].count != '0'" class="numero">{{lowPriority[0].count}} {{ 'HOME.TASKS' | translate }}</h1>
+          <h1 *ngIf="lowPriority[0].count != '0'" class="numero">{{lowPriority[0].count}} {{ 'HOME.TASKS' | translate }}
+          </h1>
         </div>
         <div class="contador2"><ion-icon class="icon" name="documents"></ion-icon>
           <h1 class="contador_title">{{ 'HOME.MEDIUM-PRIORITY' | translate }}</h1>
           <h1 *ngIf="mediumPriority[0].count == '0'" class="numero">{{ 'HOME.NO-TASKS' | translate }}</h1>
-          <h1 *ngIf="mediumPriority[0].count != '0'" class="numero">{{mediumPriority[0].count}} {{ 'HOME.TASKS' | translate }}</h1>
+          <h1 *ngIf="mediumPriority[0].count != '0'" class="numero">{{mediumPriority[0].count}} {{ 'HOME.TASKS' |
+            translate }}</h1>
         </div>
       </div>
-  
+
       <div class="contador_content_bottom">
         <div class="contador3"><ion-icon class="icon" name="warning"></ion-icon>
           <div class="important_block">
             <h1 class="contador_title">{{ 'HOME.HIGH-PRIORITY' | translate }}</h1>
             <h1 *ngIf="highPriority[0].count == '0'" class="numero">{{ 'HOME.NO-TASKS' | translate }}</h1>
-            <h1 *ngIf="highPriority[0].count != '0'" class="numero">{{highPriority[0].count}} {{ 'HOME.TASKS' | translate }}</h1>
+            <h1 *ngIf="highPriority[0].count != '0'" class="numero">{{highPriority[0].count}} {{ 'HOME.TASKS' |
+              translate }}</h1>
           </div>
         </div>
       </div>

@@ -15,7 +15,6 @@ export class DatesService {
   }
 
   getOnlyDate(datetime: string) {
-    console.log("Fecha recibida: "+datetime) //borrar esto
     const date = datetime.split('T');
     return date[0];
   }

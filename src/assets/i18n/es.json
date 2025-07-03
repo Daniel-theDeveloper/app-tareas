@@ -48,9 +48,9 @@
         "DELETE": "Borrar todo",
         "ABOUT": "Acerca de",
         "EXIT": "Salir",
-        "COPYRIGH": "Copyright © 2024 by Daniel Alfaro. Todos los derechos reservados.",
+        "COPYRIGHT": "Desarrollado por Daniel Alfaro. Todos los derechos reservados.",
         "ALERT": "ALERTA",
-        "ACTION": "Esta accion borrara todas las tareas antes creadas",
+        "ACTION": "Esta acción borrara todas las tareas antes creadas",
         "ASK-DELETE": "¿Esta seguro que quiere eliminar todas las tareas?",
         "YES": "¡Si!",
         "NO": "No"
@@ -75,15 +75,16 @@
         "HIGH": "Importantes",
         "DATE": "Fecha",
         "HOUR": "Hora",
-        "DESCRIPTION": "Descripcion",
+        "DESCRIPTION": "Descripción",
+        "ALARM": "Activar alarma?",
         "CREATE": "Crear Tarea",
         "FINISH": "Finalizar",
         "ALERT-HEADER": "Salirse sin guardar",
         "ALERT-FOOTER": "¿Seguro quiere salirse sin guardar los cambios?",
-        "CREATE-SUCCESS": "Tarea creada con exito, por favor, recargue la pagina",
-        "EDIT-SUCCESS": "Tarea configurada con exito",
-        "MESSAGGE-ERROR-SQL": "Algo salio mal, por favor reportelo",
-        "MESSAGGE-ERROR-FORM":"Por favor, llene todos los campos"
+        "CREATE-SUCCESS": "Tarea creada con éxito, por favor, recargue la pagina",
+        "EDIT-SUCCESS": "Tarea configurada con éxito",
+        "MESSAGE-ERROR-SQL": "Algo salio mal, por favor reportelo",
+        "MESSAGE-ERROR-FORM":"Por favor, llene todos los campos"
     },
     "DETAILS": {
         "TITLE": "Detalles",
