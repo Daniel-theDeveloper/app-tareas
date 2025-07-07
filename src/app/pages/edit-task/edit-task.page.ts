@@ -48,7 +48,7 @@ export class EditTaskPage implements OnInit {
 
   ngOnInit() {
     this.info = this.task.value;
-    if (this.database.developMode == false) {
+    if (!this.database.developMode) {
       let id = this.idTask.getSelectedTask();
       this.loadTask(id).then((res: boolean) => {
         if (res) {
@@ -91,7 +91,7 @@ export class EditTaskPage implements OnInit {
 
     this.info = this.task.value;
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
-      if (this.database.developMode == false) {
+      if (!this.database.developMode) {
         try{
           let id = this.idTask.getSelectedTask();
           let datetime = this.info.date+"T"+this.info.time

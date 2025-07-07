@@ -51,7 +51,7 @@ export class Tab2Page {
   ) {}
 
   ngOnInit() {
-    if (this.database.developMode == false) {
+    if (!this.database.developMode) {
       this.developMode = false;
       this.getDatesWithTasks();
       this.getTodayTask();
@@ -74,7 +74,7 @@ export class Tab2Page {
   private async getTodayTask() {
     let today = this.dates.getTodayDate();
 
-    if (this.developMode == false) {
+    if (!this.developMode) {
       this.loadpage = true;
       await this.database.loadTaskDate(today).then(() => {
         this.tasks = this.database.getSelectedTask();
@@ -96,7 +96,7 @@ export class Tab2Page {
 
     console.log('Fecha seleccionada: ', fechaSeleccionada);
 
-    if (this.developMode == false) {
+    if (!this.developMode) {
       this.loadpage = true;
       await this.database.loadTaskDate(fechaSeleccionada).then(() => {
         this.tasks = this.database.getSelectedTask();

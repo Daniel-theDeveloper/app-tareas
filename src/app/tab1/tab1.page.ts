@@ -47,24 +47,28 @@ export class Tab1Page {
     this.loadpage = false;
   }
 
+  // Función de recargar la pagina
   handleRefresh(event: any) {
     setTimeout(() => {
-      if (this.developMode == false) {
+      if (!this.developMode) {
         this.loadTasks();
         this.countAllTask();
-      } else {
-        if (this.loadpage) {
-          console.log("Carga infinita desactivada");
-          this.loadpage = false;
-        } else {
-          console.log("Carga infinita activada");
-          this.loadpage = true;
-        }
       }
+      // else
+      // {
+      //   if (this.loadpage) {
+      //     console.log("Carga infinita desactivada");
+      //     this.loadpage = false;
+      //   } else {
+      //     console.log("Carga infinita activada");
+      //     this.loadpage = true;
+      //   }
+      // }
       event.target.complete();
     }, 1000);
   }
 
+  // Función de carga de las areas
   async loadTasks() {
     this.loadpage = true;
 
@@ -72,7 +76,7 @@ export class Tab1Page {
     await this.database.loadTaskDate(this.today);
     this.tasks = this.database.getSelectedTask();
 
-    //Verifiicando si esta vacio
+    //Verificando si esta vació
     if (this.tasks()[0] == undefined) {
       this.isNone = true;
     } else {

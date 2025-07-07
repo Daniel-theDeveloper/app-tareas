@@ -48,7 +48,7 @@ export class CreateTaskPage implements OnInit {
     // Verificando si no hay campos vacíos
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
       // Verificando si no estas en la version web
-      if (this.database.developMode == false) {
+      if (!this.database.developMode) {
         try {
           // Proceso de guardado en la base de datos
           let datetime = this.info.date + "T" + this.info.time

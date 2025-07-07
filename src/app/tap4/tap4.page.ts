@@ -25,7 +25,7 @@ export class Tap4Page implements OnInit {
   ) {}
 
   async ngOnInit() {
-    if (this.database.developMode == false) {
+    if (!this.database.developMode) {
       
       await this.database.loadOnlyDates();
       this.dates = this.database.getDates();
@@ -53,7 +53,7 @@ export class Tap4Page implements OnInit {
   handleRefresh(event: any) {
     setTimeout(() => {
       this.loadpage = true;
-      if (this.developMode == false) {
+      if (!this.developMode) {
         this.loadTasks();
       }
       event.target.complete();

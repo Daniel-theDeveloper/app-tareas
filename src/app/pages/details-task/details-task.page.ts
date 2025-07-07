@@ -25,7 +25,7 @@ export class DetailsTaskPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    if (this.database.developMode == false) {
+    if (!this.database.developMode) {
       let id = this.idTask.getSelectedTask();
 
       await this.database.loadTaskId(id);
@@ -59,7 +59,7 @@ export class DetailsTaskPage implements OnInit {
   }
 
   async finishTask(id: number) {
-    await this.database.updateStatus(id, 2).then((res: any) => {
+    await this.database.finishTask(id).then((res: any) => {
       if (res) {
         this.taskFinishToast = true;
       } else {

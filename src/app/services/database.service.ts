@@ -76,7 +76,7 @@ export class DatabaseService {
       );
       this.db.open();
       const schema = 'CREATE TABLE IF NOT EXISTS Tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, status INTEGER NOT NULL, priority INTEGER NOT NULL, datetime TEXT NOT NULL, description TEXT NOT NULL);';
-  
+
       await this.db.execute(schema);
       this.loadTasks();
       console.log("Base de datos creada con éxito");
@@ -91,7 +91,7 @@ export class DatabaseService {
 
   //CRUD methods
   async loadTasks() {
-    try{
+    try {
       const tasks = await this.db.query('SELECT * FROM Tasks ORDER BY datetime DESC;');
       this.tasks.set(tasks.values || []);
     } catch (e: any) {
@@ -102,7 +102,7 @@ export class DatabaseService {
 
   async loadTaskDate(date: any) {
     try {
-      const tasks = await this.db.query('SELECT * FROM Tasks WHERE datetime LIKE "'+ date +'%" ORDER BY datetime;');
+      const tasks = await this.db.query('SELECT * FROM Tasks WHERE datetime LIKE "' + date + '%" ORDER BY datetime;');
       // this.tasks.set(tasks.values || []);
       this.selectedTask.set(tasks.values || []);
     } catch (e: any) {
@@ -112,7 +112,7 @@ export class DatabaseService {
 
   async loadTaskId(id: any) {
     try {
-      const tasks = await this.db.query('SELECT * FROM Tasks where id = "'+ id +'";');
+      const tasks = await this.db.query('SELECT * FROM Tasks where id = "' + id + '";');
       this.idTask.set(tasks.values || []);
     } catch (e: any) {
       console.error(e);
@@ -134,13 +134,13 @@ export class DatabaseService {
       await this.loadOnlyDates();
       await this.loadTaskDate(date);
       await this.countTaskByPriority(date);
-    } catch(e: any) {
+    } catch (e: any) {
       console.error(e);
     }
   }
 
   async addTasks(title: string, status: number, priority: number, datetime: string, description: string) {
-    const query = "INSERT INTO Tasks (title, status, priority, datetime, description) VALUES ('"+title+"', "+status+","+priority+", '"+datetime+"','"+description+"')";
+    const query = "INSERT INTO Tasks (title, status, priority, datetime, description) VALUES ('" + title + "', " + status + "," + priority + ", '" + datetime + "','" + description + "')";
     const result = await this.db.query(query);
 
     this.loadTasks();
@@ -150,7 +150,7 @@ export class DatabaseService {
 
   async updateTasks(id: number, title: string, status: number, priority: number, datetime: string, description: string) {
     try {
-      const query = "UPDATE Tasks SET title='"+title+"', status="+status+", priority="+priority+", datetime='"+datetime+"', description='"+description+"' WHERE id="+id;
+      const query = "UPDATE Tasks SET title='" + title + "', status=" + status + ", priority=" + priority + ", datetime='" + datetime + "', description='" + description + "' WHERE id=" + id;
       const result = await this.db.query(query);
       console.log("Resultado:");
       console.log(result);
@@ -163,7 +163,7 @@ export class DatabaseService {
   }
 
   async updateStatus(id: number, status: number) {
-    const query = "UPDATE Tasks SET status="+status+" WHERE id="+id;
+    const query = "UPDATE Tasks SET status=" + status + " WHERE id=" + id;
     const result = await this.db.query(query);
 
     this.loadTasks();
@@ -171,14 +171,21 @@ export class DatabaseService {
     return result;
   }
 
+  async finishTask(id: number) {
+    const query = "UPDATE Tasks SET status= 2 WHERE id=" + id;
+    const result = await this.db.query(query);
+
+    return result;
+  }
+
   async deleteTask(id: number) {
     try {
-      const query = 'DELETE FROM Tasks WHERE id='+id;
+      const query = 'DELETE FROM Tasks WHERE id=' + id;
       const result = await this.db.query(query);
       this.loadTasks();
       console.log("Resultado:");
       console.log(result);
-  
+
       return true;
     } catch (e: any) {
       console.error(e);
@@ -197,9 +204,9 @@ export class DatabaseService {
 
   async countTaskByPriority(date: string) {
     try {
-      const lowCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 1 AND datetime LIKE '"+date+"%';");
-      const mediumCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 2 AND datetime LIKE '"+date+"%';");
-      const highCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 3 AND datetime LIKE '"+date+"%';");
+      const lowCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 1 AND datetime LIKE '" + date + "%';");
+      const mediumCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 2 AND datetime LIKE '" + date + "%';");
+      const highCount = await this.db.query("SELECT count(*) AS count FROM Tasks WHERE priority = 3 AND datetime LIKE '" + date + "%';");
 
       this.countTasks1.set(lowCount.values || []);
       this.countTasks2.set(mediumCount.values || []);
