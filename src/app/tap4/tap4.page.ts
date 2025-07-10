@@ -11,7 +11,7 @@ import { SelectedTaskService } from '../services/selected-task.service';
 export class Tap4Page implements OnInit {
   tasks: any;
   dates: any;
-  loadpage: boolean = true;
+  loadPage: boolean = true;
   developMode: boolean = false;
   isNone: boolean = true;
   countTasks: any;
@@ -36,23 +36,23 @@ export class Tap4Page implements OnInit {
         await this.database.loadTasks().then(() => {
           this.tasks = this.database.getTasks();
           this.developMode = false;
-          this.loadpage = false;
+          this.loadPage = false;
           this.isNone = false;
         });
       } else {
         this.developMode = false;
-        this.loadpage = false;
+        this.loadPage = false;
       }
     } else {
       this.isNone = false;
       this.developMode = true;
-      this.loadpage = false;
+      this.loadPage = false;
     }
   }
 
   handleRefresh(event: any) {
     setTimeout(() => {
-      this.loadpage = true;
+      this.loadPage = true;
       if (!this.developMode) {
         this.loadTasks();
       }
@@ -69,11 +69,11 @@ export class Tap4Page implements OnInit {
       this.isNone = false;
       await this.database.loadTasks().then(() => {
         this.tasks = this.database.getTasks();
-        this.loadpage = false;
+        this.loadPage = false;
         this.isNone = false;
       });
     } else {
-      this.loadpage = false;
+      this.loadPage = false;
     }
 
   }

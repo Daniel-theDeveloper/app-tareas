@@ -1,13 +1,11 @@
+* {
+    --text_container: #000;
+    --text_subtitle: #868686;
+}
+
 .contenedor{
     display: flex;
     flex-direction: column;
-}
-.title_block{
-    text-align: center;
-}
-.title{
-    font-size: 18px;
-    font-weight: bold;
 }
 .big_label_block{
     padding-top: 15px;
@@ -23,7 +21,7 @@
     flex-direction: row;
     justify-content: space-around;
     text-align: center;
-    color: black;
+    color: var(--text_container);
 }
 
 .contador_content_bottom{
@@ -32,7 +30,7 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    color: black;
+    color: var(--text_container);
 }
 .icon{
     height: 50px;
@@ -55,7 +53,7 @@
     height: 160px;
     width: 130px;
     border-radius: 20px;
-    background-color: rgb(42, 200, 227);
+    background-color: var(--low_priority);
     box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
 .contador2{
@@ -66,7 +64,7 @@
     height: 160px;
     width: 130px;
     border-radius: 20px;
-    background-color: rgb(176, 212, 132);
+    background-color: var(--medium_priority);
     box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
 .contador3{
@@ -78,7 +76,7 @@
     height: 90px;
     width: 240px;
     border-radius: 20px;
-    background-color: hsl(338, 100%, 75%);
+    background-color: var(--high_priority);
     box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
 .tareas_content{
@@ -114,7 +112,7 @@
     align-items: center;
     height: 60px;
     width: 60px;
-    background-color: rgb(42, 200, 227);
+    background-color: var(--low_priority);
     border-radius: 100px;
 }
 .icono_fondo2{
@@ -123,7 +121,7 @@
     align-items: center;
     height: 60px;
     width: 60px;
-    background-color: rgb(176, 212, 132);
+    background-color: var(--medium_priority);
     border-radius: 100px;
 }
 .icono_fondo3{
@@ -132,7 +130,7 @@
     align-items: center;
     height: 60px;
     width: 60px;
-    background-color: hsl(338, 100%, 75%);
+    background-color: var(--high_priority);
     border-radius: 100px;
 }
 .tarea_icono{
@@ -149,7 +147,7 @@
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
 }
 .estado_title{
     margin: 0;
@@ -157,42 +155,41 @@
     font-size: 14px;
 }
 .circle1{
-    height: 12px;
-    width: 12px;
+    height: 9px;
+    width: 9px;
     margin-left: 10px;
     margin-right: 5px;
-    background-color: gold;
+    background-color: var(--pending);
     border-radius: 10px;
 }
 .circle2{
-    height: 12px;
-    width: 12px;
+    height: 9px;
+    width: 9px;
     margin-left: 10px;
     margin-right: 5px;
-    background-color: limegreen;
+    background-color: var(--completed);
     border-radius: 10px;
 }
 .estado1{
     margin: 0;
-    font-size: 13px;
-    color: rgb(255, 174, 0);
+    font-size: 14px;
+    color: var(--pending);
 }
 .estado2{
     margin: 0;
-    font-size: 13px;
-    color: limegreen;
+    font-size: 14px;
+    color: var(--completed);
 }
-.tarea_sutitle{
+.subtitle_task{
     margin-top: 5px;
     margin-bottom: 10px;
-    font-size: 13px;
-    color: #868686;
+    font-size: 14px;
+    color: var(--text_subtitle);
 }
 .options{
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 30px;
+    align-items: center;
 }
 
 .loading_Tasks{

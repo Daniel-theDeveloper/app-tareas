@@ -10,7 +10,7 @@ export class ConfigService {
     private storage: Storage
   ) { }
 
-  async initializPlugin() {
+  async initializePlugin() {
     await this.storage.create();
   }
 

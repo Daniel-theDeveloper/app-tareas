@@ -64,7 +64,7 @@ export class DatabaseService {
 
   constructor() { }
 
-  async initializPlugin() {
+  async initializePlugin() {
     console.log("Iniciando plugin") //borrar esto
     try {
       this.db = await this.sqlite.createConnection(
@@ -79,7 +79,7 @@ export class DatabaseService {
 
       await this.db.execute(schema);
       this.loadTasks();
-      console.log("Base de datos creada con éxito");
+
       return true;
     } catch (e: any) {
       // console.error(e);
@@ -103,7 +103,6 @@ export class DatabaseService {
   async loadTaskDate(date: any) {
     try {
       const tasks = await this.db.query('SELECT * FROM Tasks WHERE datetime LIKE "' + date + '%" ORDER BY datetime;');
-      // this.tasks.set(tasks.values || []);
       this.selectedTask.set(tasks.values || []);
     } catch (e: any) {
       console.error(e);
@@ -140,12 +139,19 @@ export class DatabaseService {
   }
 
   async addTasks(title: string, status: number, priority: number, datetime: string, description: string) {
-    const query = "INSERT INTO Tasks (title, status, priority, datetime, description) VALUES ('" + title + "', " + status + "," + priority + ", '" + datetime + "','" + description + "')";
-    const result = await this.db.query(query);
+    // const query = "INSERT INTO Tasks (title, status, priority, datetime, description) VALUES ('" + title + "', " + status + "," + priority + ", '" + datetime + "','" + description + "')";
+    // const result = await this.db.query(query);
 
-    this.loadTasks();
-
-    return result;
+    // return result;
+    try {
+      const result = await this.db.run("INSERT INTO Tasks (title, status, priority, datetime, description) VALUES ('" + title + "', " + status + "," + priority + ", '" + datetime + "','" + description + "')");
+      const taskId = result.changes?.lastId;
+  
+      return taskId;
+    } catch (e:any) {
+      console.error(e);
+      return null;
+    }
   }
 
   async updateTasks(id: number, title: string, status: number, priority: number, datetime: string, description: string) {
@@ -166,16 +172,19 @@ export class DatabaseService {
     const query = "UPDATE Tasks SET status=" + status + " WHERE id=" + id;
     const result = await this.db.query(query);
 
-    this.loadTasks();
-
     return result;
   }
 
   async finishTask(id: number) {
-    const query = "UPDATE Tasks SET status= 2 WHERE id=" + id;
-    const result = await this.db.query(query);
-
-    return result;
+    try {
+      const query = "UPDATE Tasks SET status= 2 WHERE id=" + id;
+      const result = await this.db.query(query);
+  
+      return result;
+    } catch (e:any) {
+      console.error(e);
+      return false;
+    }
   }
 
   async deleteTask(id: number) {
@@ -197,8 +206,11 @@ export class DatabaseService {
     try {
       const query = 'DELETE FROM Tasks';
       const result = await this.db.query(query);
+
+      return result;
     } catch (e: any) {
       console.error(e);
+      return false;
     }
   }
 

@@ -49,40 +49,45 @@ export class CreateTaskPage implements OnInit {
     if (this.info.title != "" && this.info.priority != "" && this.info.date != "" && this.info.time != "" && this.info.description != "") {
       // Verificando si no estas en la version web
       if (!this.database.developMode) {
-        try {
-          // Proceso de guardado en la base de datos
-          let datetime = this.info.date + "T" + this.info.time
-          await this.database.addTasks(this.info.title, 1, this.info.priority, datetime, this.info.description);
+        // Proceso de guardado en la base de datos
+        let datetime = this.info.date + "T" + this.info.time;
+        const res = await this.database.addTasks(this.info.title, 1, this.info.priority, datetime, this.info.description);
 
+        // Verificación si el proceso se realizo correctamente
+        if (res != null) {
           // Proceso de creación de la alarma, en caso de estar activada
           if (this.info.alarm) {
-            await this.programmingAlarm(this.info, datetime);
+            await this.programmingAlarm(res, this.info, datetime);
           }
 
+          // Creación de la notificación del éxito, al usuario
           const toast = await this.toastController.create({
             message: createMessage,
             duration: 1500,
             position: 'bottom',
           });
+
+          // Salida de la pantalla
           await this.database.loadAll(today).then(() => {
             toast.present();
             this.location.back();
           });
-        } catch (e: any) {
+        } else {
           const toast = await this.toastController.create({
             message: messageErrorSQL,
             duration: 1500,
             position: 'bottom',
           });
           await toast.present();
-          console.error("Error en: ", e);
         }
       } else {
+        // Developer mode:
         console.log("Resultado:");
         console.log(this.info);
         this.location.back();
       }
     } else {
+      // Campos vacíos
       const toast = await this.toastController.create({
         message: messageErrorForm,
         duration: 1500,
@@ -92,16 +97,35 @@ export class CreateTaskPage implements OnInit {
     }
   }
 
-  async programmingAlarm(info: any, datetime: string) {
+  async programmingAlarm(taskId: any, info: any, datetime: string) {
     await LocalNotifications.schedule({
       notifications: [
         {
-          id: 1,
+          id: taskId,
           title: info.title,
           body: info.description,
           schedule: { at: new Date(datetime) },
+          actionTypeId: 'TASK_ACTIONS'
         }
       ]
+    });
+
+    LocalNotifications.addListener('localNotificationActionPerformed', async (event: any) => {
+      const action = event.actionId;
+
+      if (action === "finish") {
+        const res = await this.database.finishTask(taskId);
+
+        if (res) {
+          console.log("Finalizado");
+        } else {
+          console.log("Algo salio mal...");
+        }
+      } else if (action === "postpone") {
+        console.log("Proceso de finalización de la tarea");
+      } else if (action === "tap") {
+        console.log("Proceso en caso de presionar en la notificación en si");
+      }
     })
   }
 

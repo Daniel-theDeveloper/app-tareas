@@ -1,6 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios">
+    <ion-title>
+      {{ 'BOARD.TITLE' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <div class="content">
-    <h1 class="title">{{ 'BOARD.TITLE' | translate }}</h1>
     <ion-datetime locale="{{ 'BOARD.LOCALE' | translate }}" mode="ios" presentation="date" [highlightedDates]="highlightedDates" size="cover"
       pickerFormat="YYYY-MM-DD" displayFormat="YYYY-MM-DD" cancelText="" doneText="BUSCAR" min="2000" max="2100"
       [showDefaultButtons]="true" (ionChange)="getDate($event)" [(ngModel)]="datetime"></ion-datetime>
@@ -97,7 +104,7 @@
             <h1 class="noTaskDescription">{{ 'BOARD.NO-TASK-SUBTITLE' | translate }}</h1>
           </div>
         </div>
-        <div *ngIf="isNone == false && loadpage == false">
+        <div *ngIf="isNone == false && loadPage == false">
           <div *ngFor="let task of tasks()">
 
             <div class="task" *ngIf="task.priority == 1">

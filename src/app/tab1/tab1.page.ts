@@ -12,9 +12,9 @@ import { DatesService } from '../services/dates.service';
 export class Tab1Page {
   today: string = "";
   tasks: any;
-  loadpage: boolean = true;
+  loadPage: boolean = true;
   developMode: boolean = false;
-  isNone: boolean = false;
+  isNone: boolean = true;
   lowPriority: any[] = ["cargando"];
   mediumPriority: any[] = ["cargando"];
   highPriority: any[] = ["cargando"];
@@ -27,10 +27,10 @@ export class Tab1Page {
   ) {}
 
   async ngOnInit() {
-    this.loadpage = true;
+    this.loadPage = true;
 
     this.today = this.dates.getTodayDate();
-    await this.database.initializPlugin().then((res: any) => {
+    await this.database.initializePlugin().then((res: any) => {
       if (res) {
         console.log("Base de datos creada");
         this.tasks = this.database.getTasks();
@@ -44,7 +44,7 @@ export class Tab1Page {
         }
       }
     });
-    this.loadpage = false;
+    this.loadPage = false;
   }
 
   // Función de recargar la pagina
@@ -56,12 +56,12 @@ export class Tab1Page {
       }
       // else
       // {
-      //   if (this.loadpage) {
+      //   if (this.loadPage) {
       //     console.log("Carga infinita desactivada");
-      //     this.loadpage = false;
+      //     this.loadPage = false;
       //   } else {
       //     console.log("Carga infinita activada");
-      //     this.loadpage = true;
+      //     this.loadPage = true;
       //   }
       // }
       event.target.complete();
@@ -70,7 +70,7 @@ export class Tab1Page {
 
   // Función de carga de las areas
   async loadTasks() {
-    this.loadpage = true;
+    this.loadPage = true;
 
     //Cargando datos
     await this.database.loadTaskDate(this.today);
@@ -82,7 +82,7 @@ export class Tab1Page {
     } else {
       this.isNone = false;
     }
-    this.loadpage = false;
+    this.loadPage = false;
   }
 
   async countAllTask() {

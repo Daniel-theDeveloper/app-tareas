@@ -108,7 +108,7 @@ ion-datetime::part(calendar-day today) {
     display: grid;
     grid-template-columns: 70px auto;
     margin: 10px;
-    background-color: rgb(42, 200, 227);
+    background-color: var(--low_priority);
     border-radius: 15px;
     box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
@@ -117,7 +117,7 @@ ion-datetime::part(calendar-day today) {
     display: grid;
     grid-template-columns: 70px auto;
     margin: 10px;
-    background-color: rgb(176, 212, 132);
+    background-color: var(--medium_priority);
     border-radius: 15px;
     box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
@@ -125,7 +125,7 @@ ion-datetime::part(calendar-day today) {
     display: grid;
     grid-template-columns: 70px auto;
     margin: 10px;
-    background-color: hsl(338, 100%, 75%);
+    background-color: var(--high_priority);
     border-radius: 15px;
     box-shadow: 4px 6px 8px 1px rgb(0, 0, 0);
 }
@@ -153,15 +153,15 @@ ion-icon {
 }
 
 .icon1 {
-    color: rgb(42, 200, 227);
+    color: var(--low_priority);
 }
 
 .icon2 {
-    color: rgb(176, 212, 132);
+    color: var(--medium_priority);
 }
 
 .icon3 {
-    color: hsl(338, 100%, 75%);
+    color: var(--high_priority);
 }
 
 .rightBlock {
@@ -188,15 +188,15 @@ ion-icon {
 
 .description1 {
     font-size: 14px;
-    color: rgb(42, 200, 227);
+    color: var(--low_priority);
 }
 
 .description2 {
     font-size: 14px;
-    color: rgb(176, 212, 132);
+    color: var(--medium_priority);
 }
 
 .description3 {
     font-size: 14px;
-    color: hsl(338, 100%, 75%);
+    color: var(--high_priority);
 }

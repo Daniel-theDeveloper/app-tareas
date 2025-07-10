@@ -3,6 +3,15 @@
 
 /** Ionic CSS Variables **/
 :root {
+  /** Task priority color theme **/
+  --low_priority: rgb(42, 200, 227);
+  --medium_priority: rgb(176, 212, 132);
+  --high_priority: hsl(338, 100%, 75%);
+
+  /** Task status **/
+  --pending: rgb(255, 174, 0);
+  --completed: limegreen;
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

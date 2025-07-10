@@ -12,7 +12,7 @@ import { DatesService } from '../services/dates.service';
 export class Tab2Page {
   public datetime: any;
   tasks: any;
-  loadpage: boolean = true;
+  loadPage: boolean = true;
   isNone: boolean = false;
   developMode = false;
   opciones: any;
@@ -75,7 +75,7 @@ export class Tab2Page {
     let today = this.dates.getTodayDate();
 
     if (!this.developMode) {
-      this.loadpage = true;
+      this.loadPage = true;
       await this.database.loadTaskDate(today).then(() => {
         this.tasks = this.database.getSelectedTask();
         if (this.tasks()[0] == undefined) {
@@ -83,7 +83,7 @@ export class Tab2Page {
         } else {
           this.isNone = false;
         }
-        this.loadpage = false;
+        this.loadPage = false;
       });
     }
   }
@@ -97,7 +97,7 @@ export class Tab2Page {
     console.log('Fecha seleccionada: ', fechaSeleccionada);
 
     if (!this.developMode) {
-      this.loadpage = true;
+      this.loadPage = true;
       await this.database.loadTaskDate(fechaSeleccionada).then(() => {
         this.tasks = this.database.getSelectedTask();
         if (this.tasks()[0] == undefined) {
@@ -105,7 +105,7 @@ export class Tab2Page {
         } else {
           this.isNone = false;
         }
-        this.loadpage = false;
+        this.loadPage = false;
       });
     }
   }
