@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
-import { SelectedTaskService } from '../services/selected-task.service';
-import { NavController } from '@ionic/angular';
 import { DatesService } from '../services/dates.service';
 
 @Component({
@@ -13,12 +11,10 @@ export class Tab2Page {
   public datetime: any;
   tasks: any;
   loadPage: boolean = true;
-  isNone: boolean = false;
+  isNone: boolean = true;
   developMode = false;
   opciones: any;
   resDate: any;
-
-  descriptionTest: string = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque, dicta.";
 
   highlightedDates = [
     {
@@ -44,9 +40,7 @@ export class Tab2Page {
   ];
 
   constructor(
-    private selectedTask: SelectedTaskService,
     private database: DatabaseService,
-    private navCtrl: NavController,
     private dates: DatesService
   ) {}
 
@@ -57,6 +51,14 @@ export class Tab2Page {
       this.getTodayTask();
     } else {
       this.developMode = true;
+      this.tasks = {
+        id: 0,
+        title: "Test Task",
+        description: "This is a test task",
+        datetime: new Date(),
+        priority: 1,
+        status: 1,
+      };
     }
   }
 
@@ -108,10 +110,5 @@ export class Tab2Page {
         this.loadPage = false;
       });
     }
-  }
-
-  details(id: number) {
-    this.selectedTask.setSelectedTask(id);
-    this.navCtrl.navigateForward('/details-task');
   }
 }

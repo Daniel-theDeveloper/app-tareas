@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div *ngIf="developMode == true" class="details">
+  <div *ngIf="developMode" class="details">
     <div class="details-header">
       <div class="line-priority1"></div>
       <div class="details-header-title">
@@ -44,7 +44,7 @@
         name="checkmark"></ion-icon>{{ 'DETAILS.FINISH-TASK' | translate }}</ion-button>
   </div>
 
-  <div *ngIf="developMode == false" class="details">
+  <div *ngIf="!developMode" class="details">
     <div *ngFor="let task of tasks()">
       <div class="details-header">
         <div *ngIf="task.priority == 1" class="line-priority1"></div>

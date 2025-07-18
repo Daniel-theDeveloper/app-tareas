@@ -13,78 +13,29 @@
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
 
-      <!-- bloque de tareas en modo desarrollador -->
-      <!-- Separación por fecha -->
-      <div *ngIf="developMode == true" class="task-date-block">
+      <!-- Bloque de tareas en desarrollo -->
+      <div *ngIf="developMode">
         <div class="top-task">
           <div class="circle"></div>
-          <h1 class="date">12 de enero</h1>
+          <h1 class="date">{{tasks.datetime | date : "dd-MM-yyyy"}}</h1>
         </div>
 
         <div class="bottom-task">
           <div class="line"></div>
-          <div class="task-details" (click)="details(1)">
-            <div class="line-priority1"></div>
-            <div class="task-title">
-              <h1 class="task-title-low">{{ 'TEST.TASK-LOW' | translate }}</h1>
-              <div class="status">
-                <div class="circle-pending"></div>
-                <h1 class="status-text-pending">{{ 'HOME.PENDING' | translate }}</h1>
-              </div>
-              <h1 class="hour">12:00:pm</h1>
-            </div>
-            <div class="status-block2">
-              <ion-icon class="status-icon" name="time"></ion-icon>
-            </div>
-          </div>
-        </div>
-
-        <div class="bottom-task">
-          <div class="line"></div>
-          <div class="task-details" (click)="details(2)">
-            <div class="line-priority2"></div>
-            <div class="task-title">
-              <h1 class="task-title-medium">{{ 'TEST.TASK-MEDIUM' | translate }}</h1>
-              <div class="status">
-                <h1 class="status-text-completed">{{ 'HOME.FINISH' | translate }}</h1>
-              </div>
-              <h1 class="hour">12:00:pm</h1>
-            </div>
-            <div class="status-block1">
-              <ion-icon class="status-icon" name="checkmark"></ion-icon>
-            </div>
-          </div>
-        </div>
-
-        <div class="bottom-task">
-          <div class="line"></div>
-          <div class="task-details" (click)="details(3)">
-            <div class="line-priority3"></div>
-            <div class="task-title">
-              <h1 class="task-title-high">{{ 'TEST.TASK-HIGH' | translate }}</h1>
-              <div class="status">
-                <div class="circle-pending"></div>
-                <h1 class="status-text-pending">{{ 'HOME.PENDING' | translate }}</h1>
-              </div>
-              <h1 class="hour">12:00:pm</h1>
-            </div>
-            <div class="status-block2">
-              <ion-icon class="status-icon" name="time"></ion-icon>
-            </div>
-          </div>
+          <app-schedule-card [task]="tasks"></app-schedule-card>
         </div>
       </div>
 
       <!-- Bloque de tareas en producción -->
-      <div *ngIf="developMode == false">
+      <div *ngIf="!developMode">
         <!-- Pagina de carga -->
-        <div *ngIf="loadPage == true" class="loader">
+        <div *ngIf="loadPage" class="loader">
           <div class="loader-icon"></div>
           <h1 class="loader-text">{{ 'HISTORIAL.LOADING' | translate }}</h1>
         </div>
 
         <!-- Pagina de datos vacíos -->
-        <div *ngIf="isNone == true" class="no-task">
+        <div *ngIf="isNone" class="no-task">
           <div class="no-task-circle">
             <ion-icon class="no-task-icon" name="clipboard"></ion-icon>
           </div>
@@ -96,42 +47,20 @@
         </div>
 
         <!-- bloque de tareas -->
-        <div *ngIf="isNone == false && loadPage == false" class="task-date-block">
+        <div *ngIf="!isNone">
           <div *ngFor="let task of tasks()">
-
             <div class="top-task">
               <div class="circle"></div>
               <h1 class="date">{{task.datetime | date : "dd-MM-yyyy"}}</h1>
             </div>
-
+  
             <div class="bottom-task">
               <div class="line"></div>
-              <div class="task-details" (click)="details(task.id)">
-                <div *ngIf="task.priority == 1" class="line-priority1"></div>
-                <div *ngIf="task.priority == 2" class="line-priority2"></div>
-                <div *ngIf="task.priority == 3" class="line-priority3"></div>
-                <div class="task-title">
-                  <h1 *ngIf="task.priority == 1" class="task-title-low">{{task.title}}</h1>
-                  <h1 *ngIf="task.priority == 2" class="task-title-medium">{{task.title}}</h1>
-                  <h1 *ngIf="task.priority == 3" class="task-title-low">{{task.title}}</h1>
-                  <div class="status">
-                    <div *ngIf="task.status == 1" class="circle-pending"></div>
-                    <h1 *ngIf="task.status == 1" class="status-text-pending">{{ 'HOME.PENDING' | translate }}</h1>
-                    <h1 *ngIf="task.status == 2" class="status-text-completed">{{ 'HOME.FINISH' | translate }}</h1>
-                  </div>
-                  <h1 class="hour">{{ task.datetime | date : "shortTime" }}</h1>
-                </div>
-                <div *ngIf="task.status == 1" class="status-block2">
-                  <ion-icon class="status-icon" name="time"></ion-icon>
-                </div>
-                <div *ngIf="task.status == 2" class="status-block1">
-                  <ion-icon class="status-icon" name="checkmark"></ion-icon>
-                </div>
-              </div>
+              <app-schedule-card [task]="task"></app-schedule-card>
             </div>
           </div>
-
         </div>
+
       </div>
     </div>
   </div>

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
-import { SelectedTaskService } from '../services/selected-task.service';
 import { DatesService } from '../services/dates.service';
 
 @Component({
@@ -21,8 +19,6 @@ export class Tab1Page {
 
   constructor(
     private database: DatabaseService,
-    private selectedTask: SelectedTaskService,
-    private navCtrl: NavController,
     private dates: DatesService,
   ) {}
 
@@ -40,7 +36,15 @@ export class Tab1Page {
         console.log("Base de datos no creada");
         if (this.database.developMode) {
           this.developMode = true;
-          this.tasks = undefined;
+          this.tasks = {
+            id: 0,
+            title: "Test Task",
+            description: "This is a test task",
+            datetime: new Date(),
+            priority: 1,
+            status: 1,
+          };
+          this.isNone = false;
         }
       }
     });
@@ -91,10 +95,5 @@ export class Tab1Page {
       this.mediumPriority = this.database.getTaskCount2();
       this.highPriority = this.database.getTaskCount3();
     });
-  }
-
-  actionEvent(id: any) {
-    this.selectedTask.setSelectedTask(id);
-    this.navCtrl.navigateForward('/details-task');
   }
 }

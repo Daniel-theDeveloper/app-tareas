@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
-import { NavController } from '@ionic/angular';
-import { SelectedTaskService } from '../services/selected-task.service';
 
 @Component({
   selector: 'app-tap4',
@@ -20,19 +18,15 @@ export class Tap4Page implements OnInit {
 
   constructor(
     private database: DatabaseService,
-    private selectedTask: SelectedTaskService,
-    private navCtrl: NavController,
-  ) {}
+  ) { }
 
   async ngOnInit() {
     if (!this.database.developMode) {
-      
+
       await this.database.loadOnlyDates();
       this.dates = this.database.getDates();
 
       if (this.dates()[0] != undefined) {
-        console.log("Existen datos");
-        this.isNone = false;
         await this.database.loadTasks().then(() => {
           this.tasks = this.database.getTasks();
           this.developMode = false;
@@ -44,9 +38,17 @@ export class Tap4Page implements OnInit {
         this.loadPage = false;
       }
     } else {
-      this.isNone = false;
       this.developMode = true;
+      this.tasks = {
+        id: 0,
+        title: "Test Task",
+        description: "This is a test task",
+        datetime: new Date(),
+        priority: 1,
+        status: 1,
+      };
       this.loadPage = false;
+      this.isNone = false;
     }
   }
 
@@ -76,10 +78,5 @@ export class Tap4Page implements OnInit {
       this.loadPage = false;
     }
 
-  }
-
-  details(id: number) {
-    this.selectedTask.setSelectedTask(id);
-    this.navCtrl.navigateForward('/details-task');
   }
 }
