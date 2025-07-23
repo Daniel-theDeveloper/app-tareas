@@ -17,7 +17,7 @@
       <div *ngIf="developMode">
         <div class="top-task">
           <div class="circle"></div>
-          <h1 class="date">{{tasks.datetime | date : "dd-MM-yyyy"}}</h1>
+          <h1 class="date">{{tasks.datetime | date : "MMM dd"}}</h1>
         </div>
 
         <div class="bottom-task">
@@ -35,7 +35,7 @@
         </div>
 
         <!-- Pagina de datos vacíos -->
-        <div *ngIf="isNone" class="no-task">
+        <div *ngIf="groupDates.length == 0" class="no-task">
           <div class="no-task-circle">
             <ion-icon class="no-task-icon" name="clipboard"></ion-icon>
           </div>
@@ -47,8 +47,20 @@
         </div>
 
         <!-- bloque de tareas -->
-        <div *ngIf="!isNone">
-          <div *ngFor="let task of tasks()">
+        <div *ngIf="groupDates.length > 0">
+          <div *ngFor="let date of groupDates">
+            <div class="top-task">
+              <div class="circle"></div>
+              <h1 class="date">{{date | date : "MMM dd"}}</h1>
+            </div>
+
+            <div *ngFor="let task of groupTasks[date]" class="bottom-task">
+              <div class="line"></div>
+              <app-schedule-card [task]="task"></app-schedule-card>
+            </div>
+          </div>
+
+          <!-- <div *ngFor="let task of tasks()">
             <div class="top-task">
               <div class="circle"></div>
               <h1 class="date">{{task.datetime | date : "dd-MM-yyyy"}}</h1>
@@ -58,7 +70,7 @@
               <div class="line"></div>
               <app-schedule-card [task]="task"></app-schedule-card>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>

@@ -1,21 +1,10 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacitor-community/sqlite';
 
+import { Tasks } from '../interfaces/tasks';
+import { Count } from '../interfaces/count';
+
 const DB_TASKS = 'tasksdb';
-
-export interface Tasks {
-  id: number;
-  title: string;
-  status: number;
-  priority: number,
-  datetime: string;
-  description: string;
-}
-
-export interface Count {
-  count: number;
-}
-
 @Injectable({
   providedIn: 'root'
 })
