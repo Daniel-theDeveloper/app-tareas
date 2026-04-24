@@ -24,7 +24,7 @@ export class Tap4Page implements OnInit {
   detailsBlock: boolean = false;
 
   constructor(
-    private database: DatabaseService,
+    private database: DatabaseService
   ) { }
 
   async ngOnInit() {
